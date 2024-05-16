@@ -1,5 +1,5 @@
 import express from 'express';
-
+import tripsRouter from './trips.api.router.js';
 import ApiError from '../../errors/api.error.js';
 
 const router = express.Router();
@@ -10,13 +10,13 @@ router.use((_, res, next) => {
 });
 
 /**
- * @route GET /api/categories/…
+ * @route GET /api/trips/…
  */
-// router.use('/categories', categoriesRouter);
+router.use('/trips', tripsRouter);
 /**
- * @route GET /api/posts/…
+ * @route GET /api/trips/…
  */
-// router.use('/posts', postsRouter);
+router.use('/trips', tripsRouter);
 
 router.use((_, __, next) => {
   next(ApiError(404, 'Not Found'));
