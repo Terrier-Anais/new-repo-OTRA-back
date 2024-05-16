@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "db:create": "node createdb.js",
+    "db:create": "node createdb.sql",
     "db:seed": "node seeding.sql",
     "dbreset":"npm run db:create && npm run db:seed",
     "dev": "nodemon index.js",
