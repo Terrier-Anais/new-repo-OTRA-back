@@ -12,11 +12,11 @@ router.use((_, res, next) => {
 /**
  * @route GET /api/categories/…
  */
-router.use('/categories', categoriesRouter);
+// router.use('/categories', categoriesRouter);
 /**
  * @route GET /api/posts/…
  */
-router.use('/posts', postsRouter);
+// router.use('/posts', postsRouter);
 
 router.use((_, __, next) => {
   next(ApiError(404, 'Not Found'));
