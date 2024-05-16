@@ -1,0 +1,42 @@
+export default class CoreDatamapper {
+    static readTableName = null;
+    static writeTableName = null;
+  
+    constructor(client) {
+      this.client = client;
+    }
+  
+    async findAll() {
+      const result = await this.client.query(`SELECT * FROM ${this.constructor.readTableName}`);
+      return result.rows;
+    }
+  
+    async findById(id) {
+      const result = await this.client.query(`SELECT * FROM ${this.constructor.readTableName} WHERE id = $1`, [id]);
+      return result.rows[0];
+    }
+  
+    async create(input) {
+      const result = await this.client.query(`
+        SELECT * FROM create_${this.constructor.readTableName}($1)
+      `, [input]);
+      return result.rows[0];
+    }
+  
+    async update(id, input) {
+      const result = await this.client.query(`
+        SELECT * FROM update_${this.constructor.readTableName}($1)
+      `, [
+        {
+          ...input,
+          id,
+        },
+      ]);
+      return result.rows[0];
+    }
+  
+    async delete(id) {
+      const result = await this.client.query(`DELETE FROM ${this.constructor.writeTableName} WHERE id = $1`, [id]);
+      return !!result.rowCount;
+    }
+  }
