@@ -1,7 +1,7 @@
-const { Client } = require('pg');
+import pg from 'pg';
 
-const client = new Client();
+const { Pool } = pg;
 
-client.connect();
+const client = new Pool();
 
-module.exports = client;
+export default client;
