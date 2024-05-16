@@ -1,6 +1,6 @@
 -- Insertion de données pour la table 'role'
 INSERT INTO "role" ("name") VALUES
-('user'),
+('membre'),
 ('moderateur');
 
 -- Insertion de données pour la table 'user'
