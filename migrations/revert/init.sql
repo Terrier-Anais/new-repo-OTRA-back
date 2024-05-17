@@ -2,6 +2,12 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+-- Supprimer les tables dans l'ordre inverse de leur création pour respecter les contraintes de clé étrangère
+DROP TABLE IF EXISTS "user_has_follower";
+DROP TABLE IF EXISTS "visit";
+DROP TABLE IF EXISTS "trip";
+DROP TABLE IF EXISTS "place";
+DROP TABLE IF EXISTS "user";
+DROP TABLE IF EXISTS "role";
 
 COMMIT;
