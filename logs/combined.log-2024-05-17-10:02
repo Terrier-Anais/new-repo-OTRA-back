@@ -1,2 +1,0 @@
-{"ip":"::ffff:127.0.0.1","level":"http","message":"/api/trips","service":"oroad","timestamp":"2024-05-17T08:02:31.023Z","userAgent":"insomnia/8.6.1"}
-{"ip":"::ffff:127.0.0.1","level":"http","message":"/trips","service":"oroad","timestamp":"2024-05-17T08:02:40.307Z","userAgent":"insomnia/8.6.1"}
