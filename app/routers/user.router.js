@@ -1,7 +1,12 @@
 import {Router} from "express";
-import {coreController} from "../../controllers"
+import authController from "../controllers/auth.controller";
 
+const router = Router();
 
-export const router = Router();
+router.get("/signup", authController.renderSignup);
+// router.post("/signup", authController.handleSignupFormSubmit);
+// router.get("/login", authController.renderLogin);
+// router.post("/login", authController.handleLoginFormSubmit);
+// router.get("/logout", authController.logout);
 
-router.get("/")
+module.exports = router;
