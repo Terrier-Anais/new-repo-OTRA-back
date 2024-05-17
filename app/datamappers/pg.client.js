@@ -1,13 +1,18 @@
 import pg from 'pg';
+const { Client } = pg;
 
-const { Pool } = pg;
-
-// Assurez-vous que les variables d'environnement sont chargées
-// par exemple avec le package dotenv si vous êtes en développement
-require('dotenv').config();
-
-const client = new Pool({
-  connectionString: process.env.PG_URL
+const client = new Client({
+    user: 'spedata',      
+    host: 'localhost',            
+    database: 'oroad',            
+    password: 'pgadmin', 
+    port: 5432,
 });
-
+client.connect()
+  .then(() => console.log('Connected to PostgreSQL'))
+  .catch(err => console.error('Connection error', err.stack));
+  
 export default client;
+
+
+

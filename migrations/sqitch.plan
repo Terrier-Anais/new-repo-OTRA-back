@@ -3,3 +3,5 @@
 
 init 2024-05-16T06:12:01Z David Cialone <cialonedavid@gmail.com> # init database
 place_evolutions 2024-05-17T09:52:35Z David Cialone <cialonedavid@gmail.com> # ajout des localisations pour villes et pays
+seeding 2024-05-17T09:56:28Z Anais Terrier <anais.terrier@oclock.school> # seeding
+
