@@ -1,10 +1,17 @@
-const pg = require('pg');
+import pg from 'pg';
+const { Client } = pg;
 
-const connectionString = process.env.DATABASE_URL;
-const client = new pg.Client(connectionString);
-client.connect(function(err) {
-  if(err) {
-    return console.error('could not connect to postgres', err);
-  }
+const client = new Client({
+    user: 'spedata',      
+    host: 'localhost',            
+    database: 'oroad',            
+    password: 'pgadmin', 
+    port: 5432,
 });
+client.connect()
+  .then(() => console.log('Connected to PostgreSQL'))
+  .catch(err => console.error('Connection error', err.stack));
+  
+export default client;
+
 

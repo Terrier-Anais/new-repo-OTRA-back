@@ -1,17 +1,12 @@
-
 import { config } from "dotenv";
 import express from "express";
-import pkg from 'pg';
-const { Client } = pkg;
+import client from './app/datamappers/pg.client.js';
 config();
 const app = express();
 
+
 app.get('/', async (req, res) => {
-    const client = new Client({
-      connectionString: process.env.DATABASE_URL,
-    });
-    await client.connect();
-    const { rows } = await client.query('SELECT * FROM user');
+    const { rows } = await client.query('SELECT * FROM trip');
     await client.end();
     res.json(rows);
 });
