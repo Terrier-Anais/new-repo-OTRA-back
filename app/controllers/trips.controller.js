@@ -1,6 +1,6 @@
 import Joi from "joi";
 import {Trip, Visit, Place} from '../../../models/index.js';
-import { tripsDatamapper } from '../../../datamappers/index.datamapper.js';
+
 
 
 // GET /api/trips
