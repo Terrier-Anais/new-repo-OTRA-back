@@ -2,14 +2,14 @@
 // import bcrypt from "bcrypt";
 // import emailValidator from "email-validator";
 // 
-import { User} from "../models/User";
-const authController = {
+// import { User} from "../models/User";
+export default authController = {
   // async 
   renderSignup(req, res) {
-    const user = User.findAll();
-    res.json(user)
-    res.render();
-    // res.render("signup");
+    // const user = User.findAll();
+    // res.json(user)
+    // res.render();
+    res.render("signup");
   },
 // renvoie de la liaison front
 
@@ -97,4 +97,4 @@ const authController = {
   // },
 };
 
-module.exports = authController;
+// module.exports = authController;
