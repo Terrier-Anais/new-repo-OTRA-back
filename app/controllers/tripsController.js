@@ -1,25 +1,23 @@
-import Joi from "joi";
-import {Trip, Visit, Place} from '../../../models/index.js';
-
+// import Joi from "joi";
+import {Trip} from '../models/Trip.js';
 
 // GET /api/trips
 export async function getMyTrips(req, res) {
-    const trips = await Trip.findAll({
-    });
-    res.status(200).json(trips);
+  const trips = await Trip.findAll();
+  res.status(200).json(trips);
 }
 
 // GET /api/trips/:id
 export async function getOneTrip(req, res) {
   const tripId = parseInt(req.params.id);
-     const trip = await Trip.findByPk(tripId, {
-      include: [{ association: "visits" }, { association: "Place" }]
-    });
-    if (!trip) {
-      return res.status(404).json({ error: "Trip not found." });
-    }
-    res.json(trip);
- }
+  const trip = await Trip.findByPk(tripId, {
+    include: [{ association: "visits" }, { association: "Place" }]
+  });
+  if (!trip) {
+    return res.status(404).json({ error: "Trip not found." });
+  }
+  res.json(trip);
+}
 
  // POST /api/trips
 export async function createTrip(req, res) {

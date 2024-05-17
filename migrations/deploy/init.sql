@@ -32,8 +32,8 @@ CREATE TABLE "place"(
 
 CREATE TABLE "trip"(
    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-   "date_start"  DATE NOT NULL,
-   "date_end"  DATE NOT NULL,
+   "dateStart"  DATE NOT NULL,
+   "dateEnd"  DATE NOT NULL,
    "photo" TEXT ,
    "title" TEXT NOT NULL,
    "description" TEXT,
@@ -45,8 +45,8 @@ CREATE TABLE "trip"(
 
 CREATE TABLE "visit"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-   "date_start"  DATE NOT NULL,
-  "date_end"  DATE NOT NULL,
+   "dateStart"  DATE NOT NULL,
+  "dateEnd"  DATE NOT NULL,
   "photo" TEXT,
   "comment" TEXT ,
   "note" INT,

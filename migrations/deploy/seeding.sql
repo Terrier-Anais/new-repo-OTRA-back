@@ -35,7 +35,7 @@ INSERT INTO "place" ("city", "country", "continent") VALUES
 
 -- Insertion de données pour la table 'trip'
 -- Note: Les valeurs pour 'user_id' sont des exemples et doivent correspondre à des ID valides de la table 'user'.
-INSERT INTO "trip" ("date_start", "date_end", "title", "user_id") VALUES
+INSERT INTO "trip" ("dateStart", "dateEnd", "title", "user_id") VALUES
 ('2024-06-01', '2024-06-10', 'Voyage à Paris', 1),
 ('2024-07-01', '2024-07-10', 'Aventure à Lyon', 2),
 ('2024-08-01', '2024-08-10', 'Découverte de Tokyo', 3),
@@ -49,7 +49,7 @@ INSERT INTO "trip" ("date_start", "date_end", "title", "user_id") VALUES
 
 -- Insertion de données pour la table 'visit'
 -- Note: Les valeurs pour 'place_id' et 'trip_id' sont des exemples et doivent correspondre à des ID valides des tables 'place' et 'trip'.
-INSERT INTO "visit" ("date_start", "date_end", "place_id", "trip_id") VALUES
+INSERT INTO "visit" ("dateStart", "dateEnd", "place_id", "trip_id") VALUES
 ('2024-06-01', '2024-06-02', 1, 1),
 ('2024-06-03', '2024-06-04', 2, 1),
 ('2024-07-01', '2024-07-02', 3, 2),
