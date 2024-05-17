@@ -1,9 +1,7 @@
 import { pool } from '../app/datamappers/pg.client.js';
 
-// Votre objet JSON
-const data = {
-  // ... Votre fichier JSON ici
-};
+
+const data = require('./places.json');
 
 const importData = async () => {
   const client = await pool.connect();
