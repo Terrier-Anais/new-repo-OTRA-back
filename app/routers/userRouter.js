@@ -1,7 +1,6 @@
 import {Router} from "express";
-import {coreController} from "../../controllers"
-
+import authController from "../controllers/authController.js";
 
 export const router = Router();
 
-router.get("/")
+router.get("/signup", authController.renderSignup);
