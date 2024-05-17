@@ -1,4 +1,0 @@
-{"ip":"::ffff:127.0.0.1","level":"http","message":"/api/trips","service":"oroad","timestamp":"2024-05-16T10:31:01.783Z","userAgent":"vscode-restclient"}
-{"level":"error","service":"oroad","timestamp":"2024-05-16T10:31:01.796Z"}
-{"ip":"::ffff:127.0.0.1","level":"http","message":"/api/trips","service":"oroad","timestamp":"2024-05-16T10:31:50.830Z","userAgent":"vscode-restclient"}
-{"level":"error","service":"oroad","timestamp":"2024-05-16T10:31:50.832Z"}
