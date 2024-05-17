@@ -2,78 +2,49 @@
 
 BEGIN;
 
--- Insertion de données pour la table 'role'
-INSERT INTO "role" ("name") VALUES
-('membre'),
-('moderateur');
+-- Insertion des rôles 'member' et 'moderator'
+INSERT INTO "role" ("name") VALUES ('member'), ('moderator');
 
--- Insertion de données pour la table 'user'
+-- Insertion de données dans la table "user"
 INSERT INTO "user" ("email", "lastname", "firstname", "pseudo", "password", "role_id") VALUES
-('user1@example.com', 'Doe', 'John', 'johndoe1', 'password1', 1),
-('user2@example.com', 'Smith', 'Anna', 'annasmith2', 'password2', 1),
-('user3@example.com', 'Brown', 'James', 'jamesbrown3', 'password3', 1),
-('user4@example.com', 'Davis', 'Maria', 'mariadavis4', 'password4', 1),
-('user5@example.com', 'Miller', 'Robert', 'robertmiller5', 'password5', 1),
-('user6@example.com', 'Wilson', 'Patricia', 'patriciawilson6', 'password6', 1),
-('user7@example.com', 'Moore', 'Jennifer', 'jennifermoore7', 'password7', 1),
-('user8@example.com', 'Taylor', 'Michael', 'michaeltaylor8', 'password8', 1),
-('user9@example.com', 'Anderson', 'Linda', 'lindaanderson9', 'password9', 1),
-('user10@example.com', 'Thomas', 'William', 'williamthomas10', 'password10', 1);
+('alice@example.com', 'Liddell', 'Alice', 'alice', 'wonderland123', 1),
+('bob@example.com', 'Builder', 'Bob', 'bob', 'buildit123', 2),
+('carol@example.com', 'Singer', 'Carol', 'carol', 'songbird123', 1),
+('dave@example.com', 'Smith', 'Dave', 'dave', 'hammer123', 2),
+('eve@example.com', 'White', 'Eve', 'eve', 'apple123', 1),
+('frank@example.com', 'Wright', 'Frank', 'frank', 'design123', 2),
+('grace@example.com', 'Hopper', 'Grace', 'grace', 'code123', 1),
+('henry@example.com', 'Ford', 'Henry', 'henry', 'drive123', 2),
+('isabel@example.com', 'Queen', 'Isabel', 'isabel', 'crown123', 1),
+('jack@example.com', 'Sparrow', 'Jack', 'jack', 'pirate123', 2);
 
--- Insertion de données pour la table 'place'
-INSERT INTO "place" ("city", "country", "continent") VALUES
-('Paris', 'France', 'Europe'),
-('Lyon', 'France', 'Europe'),
-('Tokyo', 'Japan', 'Asia'),
-('Kyoto', 'Japan', 'Asia'),
-('New York', 'USA', 'North America'),
-('Los Angeles', 'USA', 'North America'),
-('London', 'UK', 'Europe'),
-('Manchester', 'UK', 'Europe'),
-('Madrid', 'Spain', 'Europe'),
-('Barcelona', 'Spain', 'Europe');
+-- Insertion de données dans la table "place"
+INSERT INTO "place" ("city", "cityLatitude", "cityLongitude", "country", "countryLatitude", "countryLongitude", "continent") VALUES
+('Paris', 48.8566, 2.3522, 'France', 46.2276, 2.2137, 'Europe'),
+('Lyon', 45.7640, 4.8357, 'France', 46.2276, 2.2137, 'Europe'),
+('Nice', 43.7102, 7.2620, 'France', 46.2276, 2.2137, 'Europe'),
+('Marseille', 43.2965, 5.3698, 'France', 46.2276, 2.2137, 'Europe'),
+('Bordeaux', 44.8378, -0.5792, 'France', 46.2276, 2.2137, 'Europe'),
+('Nantes', 47.2184, -1.5536, 'France', 46.2276, 2.2137, 'Europe'),
+('Strasbourg', 48.5734, 7.7521, 'France', 46.2276, 2.2137, 'Europe'),
+('Toulouse', 43.6045, 1.4442, 'France', 46.2276, 2.2137, 'Europe'),
+('Lille', 50.6292, 3.0573, 'France', 46.2276, 2.2137, 'Europe'),
+('Rennes', 48.1173, -1.6778, 'France', 46.2276, 2.2137, 'Europe');
 
--- Insertion de données pour la table 'trip'
--- Note: Les valeurs pour 'user_id' sont des exemples et doivent correspondre à des ID valides de la table 'user'.
-INSERT INTO "trip" ("dateStart", "dateEnd", "title", "user_id") VALUES
-('2024-06-01', '2024-06-10', 'Voyage à Paris', 1),
-('2024-07-01', '2024-07-10', 'Aventure à Lyon', 2),
-('2024-08-01', '2024-08-10', 'Découverte de Tokyo', 3),
-('2024-09-01', '2024-09-10', 'Exploration de Kyoto', 4),
-('2024-10-01', '2024-10-10', 'Excursion à New York', 5),
-('2024-11-01', '2024-11-10', 'Séjour à Los Angeles', 6),
-('2024-12-01', '2024-12-10', 'Visite de Londres', 7),
-('2025-01-01', '2025-01-10', 'Tour de Manchester', 8),
-('2025-02-01', '2025-02-10', 'Vacances à Madrid', 9),
-('2025-03-01', '2025-03-10', 'Retraite à Barcelone', 10);
-
--- Insertion de données pour la table 'visit'
--- Note: Les valeurs pour 'place_id' et 'trip_id' sont des exemples et doivent correspondre à des ID valides des tables 'place' et 'trip'.
-INSERT INTO "visit" ("dateStart", "dateEnd", "place_id", "trip_id") VALUES
-('2024-06-01', '2024-06-02', 1, 1),
-('2024-06-03', '2024-06-04', 2, 1),
-('2024-07-01', '2024-07-02', 3, 2),
-('2024-07-03', '2024-07-04', 4, 2),
-('2024-08-01', '2024-08-02', 5, 3),
-('2024-08-03', '2024-08-04', 6, 3),
-('2024-09-01', '2024-09-02', 7, 4),
-('2024-09-03', '2024-09-04', 8, 4),
-('2024-10-01', '2024-10-02', 9, 5),
-('2024-10-03', '2024-10-04', 10, 5);
-
--- Insertion de données pour la table 'user_has_follower'
--- Note: Les valeurs pour 'user_id' et 'follower_id' sont des exemples et doivent correspondre à des ID valides de la table 'user'.
-INSERT INTO "user_has_follower" ("user_id", "follower_id") VALUES
-(1, 2),
-(1, 3),
-(2, 1),
-(2, 3),
-(3, 1),
-(3, 2),
-(4, 5),
-(4, 6),
-(5, 4),
-(5, 6);
+-- Insertion de données dans la table "trip"
+INSERT INTO "trip" ("dateStart", "dateEnd", "photo", "title", "description", "note", "user_id") VALUES
+('2024-05-20', '2024-05-27', 'photo1.jpg', 'Voyage à Paris', 'Découverte de la ville lumière', 4, 1),
+('2024-06-10', '2024-06-17', 'photo2.jpg', 'Voyage à Lyon', 'Découverte de la ville des lumières', 5, 2),
+('2024-07-15', '2024-07-22', 'photo3.jpg', 'Voyage à Nice', 'Découverte de la ville de la promenade des anglais', 3, 3),
+('2024-08-20', '2024-08-27', 'photo4.jpg', 'Voyage à Marseille', 'Découverte de la ville du vieux port', 4, 4),
+('2024-09-10', '2024-09-17', 'photo5.jpg', 'Voyage à Bordeaux', 'Découverte de la ville du vin', 5, 5),
+('2024-10-15', '2024-10-22', 'photo6.jpg', 'Voyage à Nantes', 'Découverte de la ville des machines', 3, 6),
+('2024-11-20', '2024-11-27', 'photo7.jpg', 'Voyage à Strasbourg', 'Découverte de la ville de la cathédrale', 4, 7),
+('2024-12-05', '2024-12-12', 'photo8.jpg', 'Escapade à Toulouse', 'Exploration de la ville rose', 5, 8),
+('2025-01-20', '2025-01-27', 'photo9.jpg', 'Aventure à Lille', 'Immersion dans la capitale des Flandres', 4, 9),
+('2025-02-15', '2025-02-22', 'photo10.jpg', 'Détente à Rennes', 'Découverte de la ville bretonne', 3, 10);
 
 
-COMMIT;
+COMMIT
+
+

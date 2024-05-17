@@ -24,7 +24,11 @@ CREATE TABLE "user"(
 CREATE TABLE "place"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "city" TEXT NOT NULL,
+"cityLatitude" NUMERIC(9,6) NOT NULL,
+"cityLongitude" NUMERIC(9,6) NOT NULL,
   "country" TEXT NOT NULL,
+"countryLatitude" NUMERIC(9,6) NOT NULL,
+"countryLongitude" NUMERIC(9,6) NOT NULL,
   "continent" TEXT NOT NULL,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
   "updated_at" TIMESTAMPTZ
@@ -45,7 +49,7 @@ CREATE TABLE "trip"(
 
 CREATE TABLE "visit"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-   "dateStart"  DATE NOT NULL,
+  "dateStart"  DATE NOT NULL,
   "dateEnd"  DATE NOT NULL,
   "photo" TEXT,
   "comment" TEXT ,
@@ -64,3 +68,5 @@ CREATE TABLE "user_has_follower"(
 );
 
 COMMIT;
+
+
