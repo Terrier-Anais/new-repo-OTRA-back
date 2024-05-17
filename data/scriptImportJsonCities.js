@@ -1,27 +1,38 @@
-const { Pool } = require('pg');
-const pool = new Pool({
-  // Vos paramètres de connexion
-});
+import { pool } from '../app/datamappers/pg.client.js';
 
-const jsonData = require('./chemin_vers_votre_fichier.json');
+// Votre objet JSON
+const data = {
+  // ... Votre fichier JSON ici
+};
 
 const importData = async () => {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
     
-    // Insérer les informations du continent et du pays une seule fois
-    const continent = 'Europe'; // Exemple statique, ajustez selon votre logique
-    const country = jsonData.name;
-    const countryCode = jsonData.iso3;
-    
-    for (const state of jsonData.states) {
+    // Insérer les informations du pays et du continent
+    const countryInfo = {
+      name: data.name,
+      latitude: data.latitude,
+      longitude: data.longitude,
+      continent: data.region
+    };
+
+    for (const state of data.states) {
       for (const city of state.cities) {
         const insertQuery = `
-          INSERT INTO localisations (continent, pays, code_pays, ville, latitude, longitude)
-          VALUES ($1, $2, $3, $4, $5, $6)
+          INSERT INTO locations (city, city_latitude, city_longitude, country, country_latitude, country_longitude, continent)
+          VALUES ($1, $2, $3, $4, $5, $6, $7)
         `;
-        await client.query(insertQuery, [continent, country, countryCode, city.name, city.latitude, city.longitude]);
+        await client.query(insertQuery, [
+          city.name,
+          city.latitude,
+          city.longitude,
+          countryInfo.name,
+          countryInfo.latitude,
+          countryInfo.longitude,
+          countryInfo.continent
+        ]);
       }
     }
     
@@ -35,4 +46,3 @@ const importData = async () => {
 };
 
 importData().catch(e => console.error(e.stack));
-

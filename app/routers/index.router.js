@@ -1,5 +1,5 @@
 import express from 'express';
-import errorMiddleware from '../middlewares/error.middleware.js';
+// import errorMiddleware from '../middlewares/error.middleware.js';
 
 const router = express.Router();
 
@@ -10,8 +10,6 @@ const router = express.Router();
 // /**
 //  * @route GET /…
 //  */
-// router.use('/', websiteRouter);
-
-router.use(errorMiddleware);
+// router.use(errorMiddleware);
 
 export default router;

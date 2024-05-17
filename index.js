@@ -1,14 +1,19 @@
-import { createServer } from 'node:http';
-import 'dotenv/config';
-
-import app from './app/index.app.js';
-
-const PORT = process.env.PORT || 3000;
-
-const httpServer = createServer(app);
-
-httpServer.listen(PORT, () => {
-  if (process.env.NODE_ENV !== 'production') {
-    console.log(`🚀 HTTP Server launched at http://localhost:${PORT} 🎉`);
-  }
+import { config } from "dotenv";
+import express from "express";
+import pkg from 'pg';
+const { Client } = pkg;
+config();
+const app = express();
+app.get('/', async (req, res) => {
+    const client = new Client({
+      connectionString: process.env.DATABASE_URL,
+    });
+    await client.connect();
+    const { rows } = await client.query('SELECT * FROM trip');
+    await client.end();
+    res.json(rows);
+});
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`:fusée: Serveur à l'écoute sur http://localhost:${port}`);
 });
