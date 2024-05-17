@@ -32,5 +32,3 @@ function validateTrip(req, res, next) {
   }
   return next();
 }
-
-export { validateId, validateTrip };
