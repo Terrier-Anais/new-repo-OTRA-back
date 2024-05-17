@@ -1,14 +1,18 @@
-import { createServer } from 'node:http';
-import 'dotenv/config';
+import { config } from "dotenv";
+import express from "express";
+import client from './app/datamappers/pg.client.js';
+config();
+const app = express();
 
-import app from './app/index.app.js';
 
-const PORT = process.env.PORT || 3000;
+app.get('/', async (req, res) => {
+    const { rows } = await client.query('SELECT * FROM trip');
+    await client.end();
+    res.json(rows);
+});
 
-const httpServer = createServer(app);
 
-httpServer.listen(PORT, () => {
-  if (process.env.NODE_ENV !== 'production') {
-    console.log(`🚀 HTTP Server launched at http://localhost:${PORT} 🎉`);
-  }
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`🚀 Serveur à l'écoute sur http://localhost:${port}`);
 });
