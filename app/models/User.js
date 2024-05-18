@@ -1,8 +1,7 @@
-
 import { Model, DataTypes } from "sequelize";
-import {sequelize} from "./sequelize-client";
+import {sequelize} from "./sequelizeClient";
 
-export class User extends Model {}
+export default class User extends Model {}
 
 User.init(
   {
@@ -30,7 +29,7 @@ password: {
   allowNull: false,
     },
     // je pense qu'il faut mettre role_id
-role: {
+role_id: {
   type: DataTypes.STRING,
   allowNull: false,
   defaultValue: "member",
