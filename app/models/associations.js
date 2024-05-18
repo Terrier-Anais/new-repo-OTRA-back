@@ -1,19 +1,19 @@
 // Importer nos modèles
 import { Visit } from "./Visit.js";
-import { Place } from "./Place.js";
 import { Role } from "./Role.js";
-import { Trip } from "./Trip.js"; // Assurez-vous d'importer Trip si vous l'utilisez
-import { User } from "./User.js"; // Assurez-vous d'importer User si vous l'utilisez
+import { Trip } from "./Trip.js"; 
+import { User } from "./User.js"; 
+import { Place } from "./Place.js";
 import { sequelize } from "./sequelizeClient.js";
 
 // Trip <--> Visit (One-to-Many)
 Trip.hasMany(Visit, {
   as: "visits",
   foreignKey: {
-    name: "trip_id",
+  name: "trip_id",
   },
-  onDelete: "CASCADE"
-});
+  });
+  
 Visit.belongsTo(Trip, {
   as: "trip",
   foreignKey: "trip_id"
@@ -23,10 +23,9 @@ Visit.belongsTo(Trip, {
 User.hasMany(Trip, {
   as: "trips",
   foreignKey: {
-    name: "user_id",
+  name: "user_id",
   },
-  onDelete: "CASCADE"
-});
+ });
 Trip.belongsTo(User, {
   as: "user",
   foreignKey: "user_id" 
@@ -36,32 +35,29 @@ Trip.belongsTo(User, {
 Role.hasMany(User, {
   as: "users",
   foreignKey: {
-    name: "role_id"
+  name: "role_id"
  },
-  onDelete: "CASCADE"
-}),
+ }),
 User.belongsTo(Role, {
   as: "role",
-    foreignKey: {
-    name: "role_id", 
-    allowNull: false
-    },
-    onDelete: "CASCADE"
-});
+  foreignKey: {
+  name: "role_id", 
+  allowNull: false
+  },
+  });
 
 // Visit <--> Place (One-to-One)
 Place.hasOne(Visit, {
   as: "visit",
   foreignKey: {
-    name: "place_id",
-    allowNull: false
+  name: "place_id",
+  allowNull: false
   },
-  onDelete: "CASCADE"
-}),
+  }),
   Visit.belongsTo(Place, {
-    as: "place",
-    foreignKey: "place_id",
-    allowNull: false
+  as: "place",
+  foreignKey: "place_id",
+  allowNull: false
   });
 
 

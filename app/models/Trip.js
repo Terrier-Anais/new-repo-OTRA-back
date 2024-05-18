@@ -5,29 +5,37 @@ export class Trip extends Model {}
 
 Trip.init({
 
-  dateStart: {
-    type: DataTypes.DATE,
-    allowNull: false 
+dateStart: {
+  type: DataTypes.DATE,
+  allowNull: false 
   },
-  dateEnd: {
-    type: DataTypes.DATE,
-    allowNull: false 
+dateEnd: {
+  type: DataTypes.DATE,
+  allowNull: false 
   },
-  photo: {
-    type: DataTypes.STRING,
-     },
+photo: {
+  type: DataTypes.STRING,
+  },
 title: {
-    type: DataTypes.STRING,
-      },
+  type: DataTypes.STRING,
+  },
 description: {
-    type: DataTypes.STRING,
-         },
+  type: DataTypes.STRING,
+  },
 note: {
-    type: DataTypes.INTEGER,
-     defaultValue: 3,
-    },
-
+  type: DataTypes.INTEGER,
+  defaultValue: 3,
+  },
+user_id: {
+  type: DataTypes.INTEGER,
+  allowNull: false,
+  references: {
+    model: 'users', 
+    key: 'id',
+  },
+}
 }, {
   sequelize, // instance de connexion
   tableName: "trip"
 });
+

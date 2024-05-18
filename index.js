@@ -1,7 +1,7 @@
 import express from "express";
 // import cors from "cors";
 import { router  } from "./app/routers/index.js";
-// import { bodySanitizer } from "./src/middlewares/bodySanitizer.js";
+import { bodySanitizer } from "./app/middlewares/bodySanitizer.js";
 
 // Create app
 export const app = express();
@@ -14,7 +14,9 @@ app.use(express.json()); // Body parser pour traiter les body au format JSON (`a
 app.use(express.urlencoded({ extended: true })); // Body parser pour traiter les body au format des formulaires HTMP (`applicaiton/x-www-urlencoded`)
 
 // Prevent XSS injections
-// app.use(bodySanitizer);
+app.use(bodySanitizer);
+
+
 
 // Configure app
 app.use("/api", router); // On pourrait mettre `/api/v1` si on prévoit de maintenir le système longtemps
