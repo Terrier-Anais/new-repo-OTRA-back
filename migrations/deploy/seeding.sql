@@ -44,7 +44,19 @@ INSERT INTO "trip" ("dateStart", "dateEnd", "photo", "title", "description", "no
 ('2025-01-20', '2025-01-27', 'photo9.jpg', 'Aventure à Lille', 'Immersion dans la capitale des Flandres', 4, 9),
 ('2025-02-15', '2025-02-22', 'photo10.jpg', 'Détente à Rennes', 'Découverte de la ville bretonne', 3, 10);
 
+INSERT INTO "visit" ("dateStart", "dateEnd", "photo", "comment", "note", "place_id", "trip_id") VALUES
+('2024-05-12', '2024-05-12', 'photo1.jpg', 'Commentaire sur la visite 1', 4, 1, 1),
+('2024-05-12', '2024-05-12', 'photo2.jpg', 'Commentaire sur la visite 2', 5, 2, 2),
+('2024-05-12', '2024-05-12', 'photo3.jpg', 'Commentaire sur la visite 3', 3, 3, 3),
+('2024-05-12', '2024-05-12', 'photo4.jpg', 'Commentaire sur la visite 4', 2, 4, 1),
+('2024-05-12', '2024-05-12', 'photo5.jpg', 'Commentaire sur la visite 5', 4, 5, 5),
+('2024-05-12', '2024-05-12', 'photo6.jpg', 'Commentaire sur la visite 6', 5, 6, 1),
+('2024-05-12', '2024-05-12', 'photo7.jpg', 'Commentaire sur la visite 7', 3, 7, 7),
+('2024-05-12', '2024-05-12', 'photo8.jpg', 'Commentaire sur la visite 8', 2, 8, 2),
+('2024-05-12', '2024-05-12', 'photo9.jpg', 'Commentaire sur la visite 9', 4, 9, 9),
+('2024-05-12', '2024-05-12', 'photo10.jpg', 'Commentaire sur la visite 10', 5, 10, 10);
+
+
 
 COMMIT
-
 
