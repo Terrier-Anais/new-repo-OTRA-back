@@ -8,10 +8,8 @@ import { sequelize } from "./sequelizeClient.js";
 
 // Trip <--> Visit (One-to-Many)
 Trip.hasMany(Visit, {
+  foreignKey: "trip_id",
   as: "visits",
-  foreignKey: {
-  name: "trip_id",
-  },
   });
   
 Visit.belongsTo(Trip, {
@@ -31,35 +29,42 @@ Trip.belongsTo(User, {
   foreignKey: "user_id" 
 });
 
-// User <--> Role (One-to-many)
+// User <--> Role (One-to-Many)
 Role.hasMany(User, {
-  as: "users",
-  foreignKey: {
-  name: "role_id"
- },
- }),
+  as: "users", // Alias pour l'association
+  foreignKey: "role_id"
+}),
 User.belongsTo(Role, {
-  as: "role",
-  foreignKey: {
-  name: "role_id", 
+  as: "userRole", // Changement d'alias pour éviter la collision
+  foreignKey: "role_id",
   allowNull: false
-  },
-  });
+});
+
 
 // Visit <--> Place (One-to-One)
 Place.hasOne(Visit, {
-  as: "visit",
-  foreignKey: {
-  name: "place_id",
-  allowNull: false
-  },
-  }),
-  Visit.belongsTo(Place, {
-  as: "place",
   foreignKey: "place_id",
-  allowNull: false
+  as: "visit"
+  }
+),
+  Visit.belongsTo(Place, {
+  foreignKey: "place_id",
+  as: "place",
   });
 
+  // User <--> User (Many-to-Many) via user_has_follower
+User.belongsToMany(User, {
+  through: 'user_has_follower',
+  as: 'followers',
+  foreignKey: 'user_id',
+  otherKey: 'follower_id'
+});
+User.belongsToMany(User, {
+  through: 'user_has_follower',
+  as: 'following',
+  foreignKey: 'follower_id',
+  otherKey: 'user_id'
+});
 
 // Exporter nos modèles
 export { Visit, Place, Role, Trip, User, sequelize};
