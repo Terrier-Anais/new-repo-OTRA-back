@@ -1,5 +1,3 @@
--- Deploy oroad:seeding to pg
-
 BEGIN;
 
 -- Insertion des rôles 'member' et 'moderator'
@@ -33,30 +31,26 @@ INSERT INTO "place" ("city", "cityLatitude", "cityLongitude", "country", "countr
 
 -- Insertion de données dans la table "trip"
 INSERT INTO "trip" ("dateStart", "dateEnd", "photo", "title", "description", "note", "user_id") VALUES
-('2024-05-20', '2024-05-27', 'photo1.jpg', 'Voyage à Paris', 'Découverte de la ville lumière', 4, 1),
-('2024-06-10', '2024-06-17', 'photo2.jpg', 'Voyage à Lyon', 'Découverte de la ville des lumières', 5, 2),
-('2024-07-15', '2024-07-22', 'photo3.jpg', 'Voyage à Nice', 'Découverte de la ville de la promenade des anglais', 3, 3),
-('2024-08-20', '2024-08-27', 'photo4.jpg', 'Voyage à Marseille', 'Découverte de la ville du vieux port', 4, 4),
-('2024-09-10', '2024-09-17', 'photo5.jpg', 'Voyage à Bordeaux', 'Découverte de la ville du vin', 5, 5),
-('2024-10-15', '2024-10-22', 'photo6.jpg', 'Voyage à Nantes', 'Découverte de la ville des machines', 3, 6),
-('2024-11-20', '2024-11-27', 'photo7.jpg', 'Voyage à Strasbourg', 'Découverte de la ville de la cathédrale', 4, 7),
-('2024-12-05', '2024-12-12', 'photo8.jpg', 'Escapade à Toulouse', 'Exploration de la ville rose', 5, 8),
-('2025-01-20', '2025-01-27', 'photo9.jpg', 'Aventure à Lille', 'Immersion dans la capitale des Flandres', 4, 9),
-('2025-02-15', '2025-02-22', 'photo10.jpg', 'Détente à Rennes', 'Découverte de la ville bretonne', 3, 10);
+('2020-05-20', '2024-05-27', 'photo1.jpg', 'Voyage à Paris', 'Découverte de la ville lumière', 4, 1),
+('2020-06-10', '2024-06-17', 'photo2.jpg', 'Voyage à Lyon', 'Découverte de la ville des lumières', 5, 2),
+('2020-07-15', '2024-07-22', 'photo3.jpg', 'Voyage à Nice', 'Découverte de la ville de la promenade des anglais', 3, 3),
+('2023-08-20', '2024-08-27', 'photo4.jpg', 'Voyage à Marseille', 'Découverte de la ville du vieux port', 4, 4),
+('2023-09-10', '2024-09-17', 'photo5.jpg', 'Voyage à Bordeaux', 'Découverte de la ville du vin', 5, 1),
+('2022-10-15', '2024-10-22', 'photo6.jpg', 'Voyage à Nantes', 'Découverte de la ville des machines', 3, 3),
+('2022-12-05', '2024-12-12', 'photo8.jpg', 'Escapade à Toulouse', 'Exploration de la ville rose', 5, 1),
+('2021-01-20', '2025-01-27', 'photo9.jpg', 'Aventure à Lille', 'Immersion dans la capitale des Flandres', 4, 2),
+('2021-02-15', '2025-02-22', 'photo10.jpg', 'Détente à Rennes', 'Découverte de la ville bretonne', 3, 2);
 
-INSERT INTO "visit" ("dateStart", "dateEnd", "photo", "comment", "note", "place_id", "trip_id") VALUES
-('2024-05-12', '2024-05-12', 'photo1.jpg', 'Commentaire sur la visite 1', 4, 1, 1),
-('2024-05-12', '2024-05-12', 'photo2.jpg', 'Commentaire sur la visite 2', 5, 2, 2),
-('2024-05-12', '2024-05-12', 'photo3.jpg', 'Commentaire sur la visite 3', 3, 3, 3),
-('2024-05-12', '2024-05-12', 'photo4.jpg', 'Commentaire sur la visite 4', 2, 4, 1),
-('2024-05-12', '2024-05-12', 'photo5.jpg', 'Commentaire sur la visite 5', 4, 5, 5),
-('2024-05-12', '2024-05-12', 'photo6.jpg', 'Commentaire sur la visite 6', 5, 6, 1),
-('2024-05-12', '2024-05-12', 'photo7.jpg', 'Commentaire sur la visite 7', 3, 7, 7),
-('2024-05-12', '2024-05-12', 'photo8.jpg', 'Commentaire sur la visite 8', 2, 8, 2),
-('2024-05-12', '2024-05-12', 'photo9.jpg', 'Commentaire sur la visite 9', 4, 9, 9),
-('2024-05-12', '2024-05-12', 'photo10.jpg', 'Commentaire sur la visite 10', 5, 10, 10);
+-- Insertion de données dans la table "visit"
+INSERT INTO "visit" ("dateStart","dateEnd","photo","comment","note","place_id","trip_id") VALUES
+('2022-05-20', '2024-05-27', 'photo1.jpg', 'Visite de la tour Eiffel', 4, 1, 1),
+('2023-06-18','2023-06-25','photo11.jpg','Visite du musée du Louvre', 5, 1, 1),
+('2020-07-08','2020-07-15','photo12.jpg','Promenade sur les Champs-Elysées', 3, 1, 1),
+('2021-06-10', '2024-06-17', 'photo2.jpg', 'Visite du vieux Lyon', 5, 2, 2),
+('2022-07-15', '2024-07-22', 'photo3.jpg', 'Promenade sur la promenade des anglais', 3, 3, 3),
+('2022-08-20', '2024-08-27', 'photo4.jpg', 'Découverte du vieux port', 4, 4, 4),
+('2021-09-10', '2024-09-17', 'photo5.jpg', 'Visite des vignobles bordelais', 5, 5, 5),
+('2022-01-20', '2025-01-27', 'photo9.jpg', 'Balade dans le vieux Lille', 4, 9, 3),
+('2022-02-15', '2025-02-22', 'photo10.jpg', 'Découverte du parc du Thabor', 3, 10, 1);
 
-
-
-COMMIT
-
+COMMIT;

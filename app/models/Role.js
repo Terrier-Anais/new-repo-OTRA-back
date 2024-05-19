@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import {sequelize} from "./sequelizeClient";
+import {sequelize} from "./sequelizeClient.js";
 
 export class Role extends Model {}
 

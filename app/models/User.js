@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import {sequelize} from "./sequelizeClient";
+import {sequelize} from "./sequelizeClient.js";
 
 export default class User extends Model {}
 
