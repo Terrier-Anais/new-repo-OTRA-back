@@ -1,17 +1,17 @@
 import { Model, DataTypes } from "sequelize";
 import {sequelize} from "./sequelizeClient.js";
 
-export default class User extends Model {}
+export class User extends Model {}
 
 User.init(
   {
 email: {
-  type: DataTypes.STRING, // VARCHAR(255)
-  allowNull: false, // Interdiction d'avoir en BDD un utilisateur sans email
-  unique: true, // Interdiction d'avoir en BDD 2 utilisateurs avec le même email
-  validate: {
-    isEmail: true,
-    },
+  type: DataTypes.STRING, 
+  allowNull: false, 
+  unique: true,
+  // validate: {
+  //   isEmail: true,
+  //   },
     },
 lastname: {
   type: DataTypes.STRING,
@@ -28,7 +28,6 @@ password: {
   type: DataTypes.STRING,
   allowNull: false,
     },
-    // je pense qu'il faut mettre role_id
 role_id: {
   type: DataTypes.STRING,
   allowNull: false,

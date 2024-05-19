@@ -1,4 +1,4 @@
-// import { User } from "../models/User.js";
+import { User } from "../models/index.js";
 // import emailValidator from "email-validator";
 import bcrypt from "bcrypt";
 

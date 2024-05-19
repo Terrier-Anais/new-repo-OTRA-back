@@ -40,7 +40,6 @@ User.belongsTo(Role, {
   allowNull: false
 });
 
-
 // Visit <--> Place (One-to-One)
 Place.hasOne(Visit, {
   foreignKey: "place_id",
