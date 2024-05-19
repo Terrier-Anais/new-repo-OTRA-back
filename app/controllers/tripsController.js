@@ -1,29 +1,46 @@
 // import Joi from "joi";
-import {Trip} from '../models/Trip.js';
-import { Visit } from '../models/Visit.js';
-// import { Place } from '../models/Visit.js';
+import {Trip, Visit, Place} from '../models/index.js';
+
 
 // GET /api/me/trips
 export async function getMyTrips(req, res) {
-  const trips = await Trip.findAll();
+  const userId = parseInt(req.params.id);
+  const trips = await Trip.findAll({
+    where: { user_id: userId },
+  }
+  );
   res.status(200).json(trips);
 }
 
 // GET /api/me/trips/:id
-export async function getOneTrip(req, res) {
+export async function getVisitsForTrip(req, res) {
   const tripId = parseInt(req.params.id);
-  console.log(tripId);
-  const trip = await Trip.findByPk(tripId, 
-    // {
-    //   include: {
-    //     association: "visits",
-    //   },
-    // }
-    );
-  if (!trip) {
-    return res.status(404).json({ error: "Trip not found." });
+
+  try {
+    const trip = await Trip.findByPk(tripId, {
+      include: [
+        {
+          model: Visit,
+          as: 'visits', 
+          include: [
+            {
+              model: Place,
+              as: 'place', 
+            }
+          ],
+        },
+      ],
+    });
+
+    if (!trip) {
+      return res.status(404).json({ error: 'Trip not found.' });
+    }
+
+    res.json(trip);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des visites pour le voyage :', error);
+    res.status(500).json({ message: 'Erreur interne du serveur' });
   }
-  res.json(trip);
 }
 
 // POST /api/me/trips
