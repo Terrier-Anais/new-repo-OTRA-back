@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 
 const authController = {
   renderSignup(req, res) {
-    res.render("signin.html");
+    res.sendFile("signin.html");
   },
   async handleSignupFormSubmit(req, res) {
     try {
@@ -30,7 +30,7 @@ const authController = {
         },
       });
       if (existingUser) {
-        return res.render("signin.html", {
+        return res.sendFile("signin.html", {
           emailError: "Un utilisateur existe deja avec cette email",
         });
       }
@@ -51,7 +51,7 @@ const authController = {
   },
 
   renderLogin(_, res) {
-    res.render("login.html");
+    res.sendFile("login.html");
   },
 
   async handleLoginFormSubmit(req, res) {
@@ -63,13 +63,13 @@ const authController = {
       },
     });
     if (!user) {
-      return res.render("login.html", {
+      return res.sendFile("login.html", {
         errorMessage: "Mauvaise combinaison login/mot de passe",
       });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.render("login.html", {
+      return res.sendFile("login.html", {
         errorMessage: "Mauvaise combinaison login/mot de passe",
       });
     }
