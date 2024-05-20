@@ -4,13 +4,13 @@ import bcrypt from "bcrypt";
 
 const authController = {
   renderSignup(req, res) {
-    res.render("signup");
+    res.render("signin.html");
   },
   async handleSignupFormSubmit(req, res) {
     try {
       const { email,lastname, firstname, pseudo, password, confirmation } = req.body;
       if (!firstname || !lastname || !password || !email || !confirmation) {
-        return res.render("signup", {
+        return res.render("signin.html", {
           errorMessage: "Merci de renseigner tout les champs obligatoires",
         });
       }
@@ -20,7 +20,7 @@ const authController = {
       //   });
       
       if (password !== confirmation) {
-        return res.render("signup", {
+        return res.render("signin.html", {
           errorMessage: "Les mdp de sont pas identiques",
         });
       }
@@ -30,7 +30,7 @@ const authController = {
         },
       });
       if (existingUser) {
-        return res.render("signup", {
+        return res.render("signin.html", {
           emailError: "Un utilisateur existe deja avec cette email",
         });
       }
@@ -51,7 +51,7 @@ const authController = {
   },
 
   renderLogin(_, res) {
-    res.render("login");
+    res.render("login.html");
   },
 
   async handleLoginFormSubmit(req, res) {
@@ -63,13 +63,13 @@ const authController = {
       },
     });
     if (!user) {
-      return res.render("login", {
+      return res.render("login.html", {
         errorMessage: "Mauvaise combinaison login/mot de passe",
       });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.render("login", {
+      return res.render("login.html", {
         errorMessage: "Mauvaise combinaison login/mot de passe",
       });
     }
