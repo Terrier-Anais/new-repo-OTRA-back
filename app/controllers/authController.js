@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 
 const authController = {
   renderSignup(req, res) {
-    res.render("signup");
+    res.render("signin.html");
   },
   async handleSignupFormSubmit(req, res) {
     try {
