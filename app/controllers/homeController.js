@@ -1,7 +1,7 @@
 
 const indexController = {
   renderHomePage(req, res) { 
-    res.render("home.html")
+    res.sendFile("home.html")
   }
 };
 
