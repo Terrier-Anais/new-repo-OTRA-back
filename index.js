@@ -2,6 +2,8 @@ import express from "express";
 // import cors from "cors";
 import { router  } from "./app/routers/index.js";
 import { bodySanitizer } from "./app/middlewares/bodySanitizer.js";
+import session from "express-session";
+import { sessionMiddleware } from "./app/middlewares/sessionMiddleware.js";
 
 // Create app
 export const app = express();
@@ -16,10 +18,20 @@ app.use(express.urlencoded({ extended: true })); // Body parser pour traiter les
 // Prevent XSS injections
 app.use(bodySanitizer);
 
-
+app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+        secure: process.env.ENV === "PROD" ? true : false,
+      },
+    })
+  );
 
 // Configure app
 app.use("/api", router); // On pourrait mettre `/api/v1` si on prévoit de maintenir le système longtemps
+app.use(sessionMiddleware);
 
 // Middleware 404 (API)
 // app.use((req, res) => {
