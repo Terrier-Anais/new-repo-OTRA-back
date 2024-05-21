@@ -1,7 +1,9 @@
 import express from "express";
+
 import cors from "cors";
 import { router  } from "./app/routers/index.js";
 import { bodySanitizer } from "./app/middlewares/bodySanitizer.js";
+
 
 export const app = express();
 

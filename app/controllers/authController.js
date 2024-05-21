@@ -1,5 +1,6 @@
 import { User } from "../models/index.js";
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
 
 const authController = {
   async handleSignupFormSubmit(req, res) {
@@ -47,7 +48,6 @@ const authController = {
           email,
         },
       });
-
       if (!user) {
         return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
       }
@@ -57,16 +57,14 @@ const authController = {
         return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
       }
 
-      if (!req.session) {
-        return res.status(500).json({ error: 'Session non disponible' });
-      }
-      req.session.userId = user.id;
-      res.status(201).json({ message: 'Connexion réussie' });
+      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '5h' });
+      res.status(201).json({ message: 'Connexion réussie', token });
     } catch (error) {
       console.error('Erreur lors de la connexion:', error);
       res.status(500).json({ error: 'Erreur interne du serveur' });
     }
   },
 };
+
 
 export default authController;
