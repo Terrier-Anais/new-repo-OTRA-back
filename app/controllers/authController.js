@@ -1,39 +1,27 @@
 import { User } from "../models/index.js";
-// import emailValidator from "email-validator";
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
 
 const authController = {
-  renderSignup(req, res) {
-    res.render("signup");
-  },
   async handleSignupFormSubmit(req, res) {
-    try {
-      const { email,lastname, firstname, pseudo, password, confirmation } = req.body;
-      if (!firstname || !lastname || !password || !email || !confirmation) {
-        return res.render("signup", {
-          errorMessage: "Merci de renseigner tout les champs obligatoires",
-        });
-      }
-      // if (!emailValidator.validate(email)) {
-      //   return res.render("signup", {
-      //     emailError: "Email invalide",
+      const { email,lastname, firstname, pseudo, password } = req.body;
+      // if (!email || !lastname || !firstname || !pseudo|| !password ) {
+      //   return res.status(400).json({ error: error.message });
+      // }
+      // if (password !== confirmation) {
+      //   return res.render("signin.html", {
+      //     errorMessage: "Les mdp de sont pas identiques",
       //   });
-      
-      if (password !== confirmation) {
-        return res.render("signup", {
-          errorMessage: "Les mdp de sont pas identiques",
-        });
-      }
+      // }
       const existingUser = await User.findOne({
         where: {
           email,
         },
       });
-      if (existingUser) {
-        return res.render("signup", {
-          emailError: "Un utilisateur existe deja avec cette email",
-        });
-      }
+      // if (existingUser) {
+      //   return res.status("", {
+      //     emailError: "Un utilisateur existe deja avec cette email",
+      //   });
       const salt = await bcrypt.genSalt(15);
       const hash = await bcrypt.hash(password, salt);
       await User.create({
@@ -42,45 +30,40 @@ const authController = {
         firstname,
         pseudo,
         password: hash,
+        role_id:1
       });
-      res.redirect("/login");
-    } catch (e) {
-      console.log(e);
-      res.status(500).render("500");
-    }
-  },
-
-  renderLogin(_, res) {
-    res.render("login");
+    // } catch (e) {
+    //   console.log(e);
+    //   res.status(500).render("500");
+    // }
   },
 
   async handleLoginFormSubmit(req, res) {
-    const { email, password } = req.body;
-    console.log(email, password);
-    const user = await User.findOne({
-      where: {
-        email,
-      },
-    });
-    if (!user) {
-      return res.render("login", {
-        errorMessage: "Mauvaise combinaison login/mot de passe",
-      });
-    }
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.render("login", {
-        errorMessage: "Mauvaise combinaison login/mot de passe",
-      });
-    }
-    req.session.userId = user.id;
-    res.redirect("/");
-  },
+    try {
+      const { email, password } = req.body;
+      console.log(email, password);
 
-  // logout(req, res) {
-  //   req.session.userID = null;
-  //   res.redirect("/");
-  // },
+      const user = await User.findOne({
+        where: {
+          email,
+        },
+      });
+      if (!user) {
+        return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
+      }
+
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
+      }
+
+      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '5h' });
+      res.status(201).json({ message: 'Connexion réussie', token });
+    } catch (error) {
+      console.error('Erreur lors de la connexion:', error);
+      res.status(500).json({ error: 'Erreur interne du serveur' });
+    }
+  },
 };
 
 

@@ -10,11 +10,13 @@ import { sequelize } from "./sequelizeClient.js";
 Trip.hasMany(Visit, {
   foreignKey: "trip_id",
   as: "visits",
+  onDelete: 'CASCADE'
   });
   
 Visit.belongsTo(Trip, {
   as: "trip",
-  foreignKey: "trip_id"
+  foreignKey: "trip_id",
+  onDelete: 'CASCADE'
 });
 
 // User <--> Trip (One-to-Many)
@@ -22,22 +24,26 @@ User.hasMany(Trip, {
   as: "trips",
   foreignKey: {
   name: "user_id",
+  onDelete: 'CASCADE'
   },
  });
 Trip.belongsTo(User, {
   as: "user",
-  foreignKey: "user_id" 
+  foreignKey: "user_id",
+  onDelete: 'CASCADE'
 });
 
 // User <--> Role (One-to-Many)
 Role.hasMany(User, {
   as: "users", // Alias pour l'association
-  foreignKey: "role_id"
+  foreignKey: "role_id",
+  onDelete: 'CASCADE'
 }),
 User.belongsTo(Role, {
   as: "userRole", // Changement d'alias pour éviter la collision
   foreignKey: "role_id",
-  allowNull: false
+  allowNull: false,
+  onDelete: 'CASCADE'
 });
 
 // Visit <--> Place (One-to-One)
