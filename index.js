@@ -1,5 +1,5 @@
 import express from "express";
-// import cors from "cors";
+import cors from "cors";
 import { router  } from "./app/routers/index.js";
 import { bodySanitizer } from "./app/middlewares/bodySanitizer.js";
 
@@ -7,7 +7,7 @@ import { bodySanitizer } from "./app/middlewares/bodySanitizer.js";
 export const app = express();
 
 // Autoriser les requêtes Cross-Origin
-// app.use(cors({ origin: process.env.CORS_ORIGIN }));
+app.use(cors({ origin: process.env.CORS_ORIGIN }));
 
 // Body parsers
 app.use(express.json()); // Body parser pour traiter les body au format JSON (`application/json`)
@@ -22,7 +22,7 @@ app.use(bodySanitizer);
 app.use("/api", router); // On pourrait mettre `/api/v1` si on prévoit de maintenir le système longtemps
 
 // Middleware 404 (API)
-// app.use((req, res) => {
-//   // TODO: rediriger vers la documentation de l'API !
-//   res.send("Not Found"); // FIXME
-// });
+app.use((req, res) => {
+  // TODO: rediriger vers la documentation de l'API !
+  res.send("Not Found"); // FIXME
+});

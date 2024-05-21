@@ -20,7 +20,7 @@ POST {{endpoint}}/me/trips
 Content-Type: application/json
 
 {
-    "title": "Nouveau voyage"
+   "title": "Nouveau voyage"
 }
 
 # ### Création d'un voyage en erreur a cause d'un souci de caractère
@@ -49,7 +49,7 @@ Content-Type: application/json
     "title": "Nouveau voyage",
     "description": "Description du voyage",
     "note": 4,
-    "user_id": 15
+    "user_id": 1
 }
 
 ### Modification du voyage avec l'id voyageInsert
