@@ -1,36 +1,27 @@
 import { User } from "../models/index.js";
-// import emailValidator from "email-validator";
 import bcrypt from "bcrypt";
 
 const authController = {
-  renderSignup(req, res) {
-    res.sendFile("signin.html");
-  },
   async handleSignupFormSubmit(req, res) {
     try {
-      const { email,lastname, firstname, pseudo, password, confirmation } = req.body;
-      if (!firstname || !lastname || !password || !email || !confirmation) {
-        return res.render("signin.html", {
-          errorMessage: "Merci de renseigner tout les champs obligatoires",
+      const { email,lastname, firstname, pseudo, password } = req.body;
+      if (!email || !lastname || !firstname || !pseudo|| !password ) {
+        return res.json("email,lastname, firstname, pseudo, password", {
+          errorMessage: "Erreur de saisie",
         });
       }
-      // if (!emailValidator.validate(email)) {
-      //   return res.render("signup", {
-      //     emailError: "Email invalide",
+      // if (password !== confirmation) {
+      //   return res.render("signin.html", {
+      //     errorMessage: "Les mdp de sont pas identiques",
       //   });
-      
-      if (password !== confirmation) {
-        return res.render("signin.html", {
-          errorMessage: "Les mdp de sont pas identiques",
-        });
-      }
+      // }
       const existingUser = await User.findOne({
         where: {
           email,
         },
       });
       if (existingUser) {
-        return res.sendFile("signin.html", {
+        return res.status("", {
           emailError: "Un utilisateur existe deja avec cette email",
         });
       }
@@ -43,16 +34,15 @@ const authController = {
         pseudo,
         password: hash,
       });
-      res.redirect("/login");
     } catch (e) {
       console.log(e);
       res.status(500).render("500");
     }
   },
 
-  renderLogin(_, res) {
-    res.sendFile("login.html");
-  },
+  // renderLogin(_, res) {
+  //   res.sendFile("login.html");
+  // },
 
   async handleLoginFormSubmit(req, res) {
     const { email, password } = req.body;
@@ -74,7 +64,7 @@ const authController = {
       });
     }
     req.session.userId = user.id;
-    res.redirect("/");
+    res.status("201").json();
   },
 
   // logout(req, res) {
