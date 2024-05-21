@@ -38,24 +38,35 @@ const authController = {
   },
 
   async handleLoginFormSubmit(req, res) {
-    const { email, password } = req.body;
-    console.log(email, password);
-    const user = await User.findOne({
-      where: {
-        email,
-      },
-    });
-    // if (!user) {
-    //   return res.status(400).json({ error: error.message });
-    // }
-    const isMatch = await bcrypt.compare(password, user.password);
-    // if (!isMatch) {
-    //   return res.status(400).json({ error: error.message });
-    // }
-    req.session.userId = user.id;
-    // res.status("201").json();
+    try {
+      const { email, password } = req.body;
+      console.log(email, password);
+
+      const user = await User.findOne({
+        where: {
+          email,
+        },
+      });
+
+      if (!user) {
+        return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
+      }
+
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
+      }
+
+      if (!req.session) {
+        return res.status(500).json({ error: 'Session non disponible' });
+      }
+      req.session.userId = user.id;
+      res.status(201).json({ message: 'Connexion réussie' });
+    } catch (error) {
+      console.error('Erreur lors de la connexion:', error);
+      res.status(500).json({ error: 'Erreur interne du serveur' });
+    }
   },
 };
-
 
 export default authController;
