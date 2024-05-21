@@ -3,13 +3,10 @@ import bcrypt from "bcrypt";
 
 const authController = {
   async handleSignupFormSubmit(req, res) {
-    try {
       const { email,lastname, firstname, pseudo, password } = req.body;
-      if (!email || !lastname || !firstname || !pseudo|| !password ) {
-        return res.json("email,lastname, firstname, pseudo, password", {
-          errorMessage: "Erreur de saisie",
-        });
-      }
+      // if (!email || !lastname || !firstname || !pseudo|| !password ) {
+      //   return res.status(400).json({ error: error.message });
+      // }
       // if (password !== confirmation) {
       //   return res.render("signin.html", {
       //     errorMessage: "Les mdp de sont pas identiques",
@@ -20,11 +17,10 @@ const authController = {
           email,
         },
       });
-      if (existingUser) {
-        return res.status("", {
-          emailError: "Un utilisateur existe deja avec cette email",
-        });
-      }
+      // if (existingUser) {
+      //   return res.status("", {
+      //     emailError: "Un utilisateur existe deja avec cette email",
+      //   });
       const salt = await bcrypt.genSalt(15);
       const hash = await bcrypt.hash(password, salt);
       await User.create({
@@ -33,16 +29,13 @@ const authController = {
         firstname,
         pseudo,
         password: hash,
+        role_id:1
       });
-    } catch (e) {
-      console.log(e);
-      res.status(500).render("500");
-    }
+    // } catch (e) {
+    //   console.log(e);
+    //   res.status(500).render("500");
+    // }
   },
-
-  // renderLogin(_, res) {
-  //   res.sendFile("login.html");
-  // },
 
   async handleLoginFormSubmit(req, res) {
     const { email, password } = req.body;
@@ -52,25 +45,16 @@ const authController = {
         email,
       },
     });
-    if (!user) {
-      return res.sendFile("login.html", {
-        errorMessage: "Mauvaise combinaison login/mot de passe",
-      });
-    }
+    // if (!user) {
+    //   return res.status(400).json({ error: error.message });
+    // }
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.sendFile("login.html", {
-        errorMessage: "Mauvaise combinaison login/mot de passe",
-      });
-    }
+    // if (!isMatch) {
+    //   return res.status(400).json({ error: error.message });
+    // }
     req.session.userId = user.id;
-    res.status("201").json();
+    // res.status("201").json();
   },
-
-  // logout(req, res) {
-  //   req.session.userID = null;
-  //   res.redirect("/");
-  // },
 };
 
 
