@@ -18,3 +18,5 @@ router.post("/login", authController.handleLoginFormSubmit);
 
 // router.get("/logout", authController.logout);
 // déconnexion
+
+router.get("/cookie", authController.tryCookie);
