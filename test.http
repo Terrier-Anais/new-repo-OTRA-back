@@ -6,8 +6,31 @@ GET {{endpoint}}/truc
 ### Documentation
 GET {{endpoint}}
 
+### Inscription
+POST {{endpoint}}/signup
+Content-Type: application/json
+
+{
+    "email": "bob@bob.fr",
+    "lastname": "Bob",
+    "firstname": "Bob",
+    "pseudo": "Bob",
+    "password": "bob",
+    "role_id": 1
+}
+
+### Connexion
+POST {{endpoint}}/login
+Content-Type: application/json
+
+{
+    "email": "bob@bob.fr",
+    "password": "bob"
+}
+
 ### Récupération de son carnet de voyage
 GET {{endpoint}}/me/trips
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTcxNjM3MDQ0NiwiZXhwIjoxNzE2Mzg4NDQ2fQ.TjWJ7yaOjp8lvXork8tLPTJ9PzQtPzeHmqxGyhFrGfU
 
 ### Récupération du voyage avec l'id 1
 GET {{endpoint}}/me/trips/1
