@@ -3,6 +3,11 @@ import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 
 const authController = {
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
   async handleSignupFormSubmit(req, res) {
       const { email,lastname, firstname, pseudo, password } = req.body;
       // if (!email || !lastname || !firstname || !pseudo|| !password ) {
