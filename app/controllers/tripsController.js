@@ -4,17 +4,16 @@ import {Trip, Visit, Place, User} from '../models/index.js';
 // GET /api/me/trips
 export async function getMyTrips(req, res) {
   // Trouver l'utilisateur par clé primaire (PK)
-  // const user = await User.findByPk(req.user.id);
-  // console.log(user);
+   const user = await User.findByPk(req.user.id);
 
   // Vérifier si l'utilisateur existe
-  // if (!user) {
-  //   return res.status(404).send('User not found');
-  // }
+  if (!user) {
+    return res.status(404).send('User not found');
+  }
 
   // Trouver tous les voyages associés à l'utilisateur
   const trips = await Trip.findAll({
-    // where: { user_id: user.id },
+    where: { user_id: user.id },
   });
 
   // Répondre avec les voyages trouvés
