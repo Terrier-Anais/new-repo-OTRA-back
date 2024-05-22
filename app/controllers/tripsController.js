@@ -1,14 +1,22 @@
 // import Joi from "joi";
-import {Trip, Visit, Place} from '../models/index.js';
-
+import {Trip, Visit, Place, User} from '../models/index.js';
 
 // GET /api/me/trips
 export async function getMyTrips(req, res) {
-  const userId = parseInt(req.params.id);
-  const trips = await Trip.findAll({
-    where: { user_id: userId },
+  // Trouver l'utilisateur par clé primaire (PK)
+   const user = await User.findByPk(req.user.id);
+
+  // Vérifier si l'utilisateur existe
+  if (!user) {
+    return res.status(404).send('User not found');
   }
-  );
+
+  // Trouver tous les voyages associés à l'utilisateur
+  const trips = await Trip.findAll({
+    where: { user_id: user.id },
+  });
+
+  // Répondre avec les voyages trouvés
   res.status(200).json(trips);
 }
 
@@ -16,7 +24,6 @@ export async function getMyTrips(req, res) {
 export async function getVisitsForTrip(req, res) {
   const tripId = parseInt(req.params.id);
 
-  try {
     const trip = await Trip.findByPk(tripId, {
       include: [
         {
@@ -37,10 +44,7 @@ export async function getVisitsForTrip(req, res) {
     }
 
     res.json(trip);
-  } catch (error) {
-    console.error('Erreur lors de la récupération des visites pour le voyage :', error);
-    res.status(500).json({ message: 'Erreur interne du serveur' });
-  }
+
 }
 
 // POST /api/me/trips
@@ -48,7 +52,7 @@ export async function createTrip(req, res) {
   const {dateStart,dateEnd, photo, title, description, note, user_id } = req.body;
   console.log(req.body);
 
-  try {
+
     const trip = await Trip.create({
       dateStart, 
       dateEnd, 
@@ -59,11 +63,6 @@ export async function createTrip(req, res) {
       user_id
     });
     res.status(201).json(trip);
-  } catch (error) {
-    // Gérer l'erreur si la création échoue
-    console.error(error);
-    res.status(400).json({ error: error.message });
-  }
 }
 
 

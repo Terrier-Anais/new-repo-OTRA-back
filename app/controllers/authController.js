@@ -41,13 +41,15 @@ const authController = {
   async handleLoginFormSubmit(req, res) {
     try {
       const { email, password } = req.body;
-      console.log(email, password);
+      // console.log(email, password);
 
       const user = await User.findOne({
         where: {
           email,
         },
+      
       });
+      
       if (!user) {
         return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
       }
@@ -58,6 +60,8 @@ const authController = {
       }
 
       const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '5h' });
+
+      console.log("mon token", token);
       res.status(201).json({ message: 'Connexion réussie', token });
       res.cookie('token', token, { httpOnly: true, secure: true });
       res.send('Utilisateur authentifié et token stocké dans un cookie.');
