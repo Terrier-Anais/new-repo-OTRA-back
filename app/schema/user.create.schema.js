@@ -15,11 +15,11 @@ export default Joi.object({
         }),
     lastname: Joi.string().required()
         .messages({
-            'any.required': 'Le champ lastname est requis.'
+            'any.required': 'Le champ Nom est requis.'
         }),
     firstname: Joi.string().required()
         .messages({
-            'any.required': 'Le champ firstname est requis.'
+            'any.required': 'Le champ Prénom est requis.'
         }),
     pseudo: Joi.string().optional(),
     password: passwordSecurity,

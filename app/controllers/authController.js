@@ -34,8 +34,8 @@ const authController = {
             role_id: 1
         });
         res.status(201).json({ message: 'Utilisateur créé avec succès' });
-    } catch (e) {
-        console.error('Erreur lors de l\'inscription:', e);
+    } catch (error) {
+        console.error('Erreur lors de l\'inscription:', error);
         res.status(500).json({ error: 'Erreur interne du serveur' });
     }
 },
@@ -45,26 +45,29 @@ const authController = {
  * @param {object} res 
  * @returns 
  */
- async handleLoginFormSubmit(req, res) {
+async handleLoginFormSubmit(req, res) {
   try {
-      const { email, password } = req.body;
-      const user = await User.findOne({ where: { email } });
-      
-      if (!user) {
-          return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
-      }
+    const { email, password } = req.body;
+    const user = await User.findOne({ where: { email } });
+    
+    if (!user) {
+      return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
+    }
 
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-          return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
-      }
-      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '5h' });
-      console.log("mon token", token);
-      res.status(201).json({ message: 'Connexion réussie', token });
-      res.cookie('token', token, { httpOnly: true, secure: true });
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
+    }
+    
+    const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '5h' });
+    console.log("mon token", token);
+    
+    res.cookie('token', token, { httpOnly: true, secure: true });
+    
+    res.status(201).json({ message: 'Connexion réussie', token });
   } catch (error) {
-      console.error('Erreur lors de la connexion:', error);
-      res.status(500).json({ error: 'Erreur interne du serveur' });
+    console.error('Erreur lors de la connexion:', error);
+    res.status(500).json({ error: 'Erreur interne du serveur' });
   }
 }
 };

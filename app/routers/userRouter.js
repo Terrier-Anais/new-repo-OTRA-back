@@ -5,6 +5,7 @@ import authController from "../controllers/authController.js";
 export const router = Router();
 
 router.post("/signup", authController.handleSignupFormSubmit);
+
 router.post("/login", authController.handleLoginFormSubmit);
 
 // router.get("/logout", authController.logout);
