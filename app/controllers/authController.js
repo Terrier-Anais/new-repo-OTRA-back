@@ -11,6 +11,7 @@ const authController = {
    */
   async handleSignupFormSubmit(req, res) {
     try {
+
         const { email, lastname, firstname, pseudo, password } = req.body;
         const { error } = userSchema.validate({ email, lastname, firstname, pseudo, password });
 
@@ -85,6 +86,7 @@ async handleLoginFormSubmit(req, res) {
   //     }
   //     res.send(`Accès accordé. Bonjour, ${decoded.name}`);
   //   });
+
 
 
 

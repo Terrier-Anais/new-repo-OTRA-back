@@ -30,7 +30,7 @@ Content-Type: application/json
 
 ### Récupération de son carnet de voyage
 GET {{endpoint}}/me/trips
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTcxNjM3MDQ0NiwiZXhwIjoxNzE2Mzg4NDQ2fQ.TjWJ7yaOjp8lvXork8tLPTJ9PzQtPzeHmqxGyhFrGfU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTcxNjQ1MTUyNSwiZXhwIjoxNzE2NDY5NTI1fQ.4--M4sAiBD8P4Iyg8R4niSirIvzZV8O37v2jAQvMc1o
 
 ### Récupération du voyage avec l'id 1
 GET {{endpoint}}/me/trips/1
