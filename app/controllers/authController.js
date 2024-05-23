@@ -45,50 +45,32 @@ const authController = {
 
   async handleLoginFormSubmit(req, res) {
     try {
-      const { email, password } = req.body;
-      // console.log(email, password);
+        const { email, password } = req.body;
 
-      const user = await User.findOne({
-        where: {
-          email,
-        },
-      
-      });
-      
-      if (!user) {
-        return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
-      }
+        const user = await User.findOne({
+            where: { email },
+        });
 
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-        return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
-      }
+        if (!user) {
+            return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
+        }
 
-      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '5h' });
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
+        }
 
-      console.log("mon token", token);
-      res.status(201).json({ message: 'Connexion réussie', token });
-      res.cookie('token', token, { httpOnly: true, secure: true });
-      res.send('Utilisateur authentifié et token stocké dans un cookie.');
-      
+        const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '5h' });
+
+        console.log("mon token", token);
+        // res.cookie('token', token, { httpOnly: true, secure: true });
+        return res.status(201).json({ message: 'Connexion réussie', token });
     } catch (error) {
-      console.error('Erreur lors de la connexion:', error);
-      res.status(500).json({ error: 'Erreur interne du serveur' });
+        console.error('Erreur lors de la connexion:', error);
+        return res.status(500).json({ error: 'Erreur interne du serveur' });
     }
-  },
-  async tryCookie(req, res){
-    const token = req.cookies.token;
-    if (!token) {
-      return res.status(403).send('Accès interdit. Token manquant.');
-    }
-    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-      if (err) {
-        return res.status(403).send('Accès interdit. Token invalide.');
-      }
-      res.send(`Accès accordé. Bonjour, ${decoded.name}`);
-    });
-  }
-};
+}
+}
 
 
 export default authController;
