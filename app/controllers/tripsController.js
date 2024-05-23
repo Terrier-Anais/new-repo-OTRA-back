@@ -1,5 +1,6 @@
 import Joi from "joi";
-import {Trip, Visit, Place, User} from '../models/index.js';
+import { Trip, Visit, Place, User } from '../models/index.js';
+import { tripIdSchema, createTripSchema, updateTripSchema } from '../schema/trip.schema.js';
 
 /**
  * Retrieve all trips associated with the authenticated user.
@@ -12,11 +13,7 @@ import {Trip, Visit, Place, User} from '../models/index.js';
  * 
  */
 export async function getMyTrips(req, res) {
-    const schema = Joi.object({
-    id: Joi.number().integer().required()
-  });
-
-  const { error } = schema.validate({ id: req.user.id });
+  const { error } = tripIdSchema.validate({ id: req.user.id });
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
@@ -42,12 +39,7 @@ export async function getMyTrips(req, res) {
  * @returns {Promise<void>} - A promise that resolves to void.
  */
 export async function getVisitsForTrip(req, res) {
-  const schema = Joi.object({
-    id: Joi.number().integer().required()
-  });
-
-  const { error } = schema.validate({ id: req.params.id });
-
+  const { error } = tripIdSchema.validate({ id: req.params.id });
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
@@ -58,42 +50,31 @@ export async function getVisitsForTrip(req, res) {
     include: [
       {
         model: Visit,
-        as: 'visits', 
+        as: 'visits',
         include: [
           {
             model: Place,
-            as: 'place', 
-          }
+            as: 'place',
+          },
         ],
       },
     ],
   });
 
   if (!trip) {
-    return res.status(404).json({ error: "Le voyage n'a pas été retrouvé"});
+    return res.status(404).json({ error: "Le voyage n'a pas été retrouvé" });
   }
   res.json(trip);
 }
 
-
 /**
- * create a new trip.
+ * Create a new trip.
  * 
  * @param {Object} req - The request object.
- * @param {string} req.body- The trip informations.
+ * @param {string} req.body - The trip information.
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A promise that resolves to void.
  */
-
-const createTripSchema = Joi.object({
-  dateStart: Joi.date().required(),
-  dateEnd: Joi.date().required(),
-  photo: Joi.string(),
-  title: Joi.string().max(255).required(),
-  description: Joi.string().max(2048),
-  note: Joi.number().min(0).max(5),
-  user_id: Joi.number().integer().required()
-});
 
 // POST /api/me/trips
 export async function createTrip(req, res) {
@@ -106,13 +87,13 @@ export async function createTrip(req, res) {
 
   try {
     const trip = await Trip.create({
-      dateStart, 
-      dateEnd, 
+      dateStart,
+      dateEnd,
       photo,
       title,
       description,
       note,
-      user_id
+      user_id,
     });
     res.status(201).json(trip);
   } catch (err) {
@@ -121,23 +102,14 @@ export async function createTrip(req, res) {
 }
 
 /**
- * update a new trip.
+ * Update an existing trip.
  * 
  * @param {Object} req - The request object.
- * @param {string} req.params.id - The trip id.
- * @param {string} req.body- The trip informations.
+ * @param {string} req.params.id - The trip ID.
+ * @param {string} req.body - The trip information.
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A promise that resolves to void.
  */
-
-const updateTripSchema = Joi.object({
-  dateStart: Joi.date(),
-  dateEnd: Joi.date(),
-  photo: Joi.string(),
-  title: Joi.string().max(255),
-  description: Joi.string().max(2048),
-  note: Joi.number().min(0).max(5)
-});
 
 // PATCH /api/me/trips/:id
 export async function updateTrip(req, res) {
@@ -152,7 +124,7 @@ export async function updateTrip(req, res) {
     return res.status(400).json({ error: error.details[0].message });
   }
 
-  const { dateStart,dateEnd, photo, title, description, note } = value;
+  const { dateStart, dateEnd, photo, title, description, note } = value;
 
   if (dateStart !== undefined) trip.dateStart = dateStart;
   if (dateEnd !== undefined) trip.dateEnd = dateEnd;
@@ -165,31 +137,27 @@ export async function updateTrip(req, res) {
   res.json(trip);
 }
 
-
-
 /**
- * delete a new trip.
+ * Delete an existing trip.
  * 
  * @param {Object} req - The request object.
- * @param {string} req.params.id - The trip id.
+ * @param {string} req.params.id - The trip ID.
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A promise that resolves to void.
  */
 
-const deleteTripSchema = Joi.object({
-  id: Joi.number().integer().required()
-});
-
-//DELETE /api/me/trips/:id
-export async function deleteTrip(req, res){
-  const { error } = deleteTripSchema.validate({ id: req.params.id });
+// DELETE /api/me/trips/:id
+export async function deleteTrip(req, res) {
+  const { error } = tripIdSchema.validate({ id: req.params.id });
   if (error) {
-    return res.status(400).json({ error: 'Invalid trip ID: ' + error.details[0].message });
+    return res.status (400).json({ error: 'Invalid trip ID: ' + error.details[0].message });
   }
 
+  const tripId = parseInt(req.params.id);
   const trip = await Trip.findByPk(tripId);
   if (!trip) {
     return res.status(404).json({ error: "Trip not found." });
   }
   await trip.destroy();
+  res.status(204).send();
 }
