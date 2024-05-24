@@ -62,7 +62,7 @@ async handleLoginFormSubmit(req, res) {
     const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '5h' });
     console.log("mon token", token);
     
-    res.cookie('token', token, { httpOnly: true, secure: true });
+    // res.cookie('token', token, { httpOnly: true, secure: true });
     
     res.status(201).json({ message: 'Connexion réussie', token });
   } catch (error) {

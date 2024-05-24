@@ -22,5 +22,5 @@ export default Joi.object({
             'any.required': 'Le champ Prénom est requis.'
         }),
     pseudo: Joi.string().optional(),
-    password: passwordSecurity,
+    // password: passwordSecurity,
 });
