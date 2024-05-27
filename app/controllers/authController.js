@@ -1,7 +1,8 @@
-import { User } from "../models/index.js";
-import bcrypt from "bcrypt";
+import { User } from '../models/index.js';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import userSchema from "../schema/user.create.schema.js"
+
+import userSchema from '../schema/user.create.schema.js';
 
 const authController = {
   /**
@@ -11,12 +12,12 @@ const authController = {
    */
   async handleSignupFormSubmit(req, res) {
     try {
-        const { email, lastname, firstname, pseudo, password } = req.body;
-        const { error } = userSchema.validate({ email, lastname, firstname, pseudo, password });
-
+        const { email, lastname, firstname, pseudo, password, confirmation } = req.body;
+        const { error } = userSchema.validate({ email, lastname, firstname, pseudo, password, confirmation });
         if (error) {
-            return res.status(400).json({ error: error.details[0].message });
-        }
+          return res.status(400).json({ error: error.details[0].message });
+      }
+       
         const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
             return res.status(400).json({ error: "Un utilisateur existe déjà avec cet email" });
