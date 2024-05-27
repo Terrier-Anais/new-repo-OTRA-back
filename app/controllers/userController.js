@@ -1,4 +1,4 @@
-import { User } from '../models/index.js';
+import { User, Trip, Visit } from '../models/index.js';
 import bcrypt from 'bcrypt';
 
 const userController = {
@@ -28,7 +28,12 @@ const userController = {
         if (!user) {
             return res.status(404).json({ message: 'Utilisateur non trouvé' });
         }
-          await user.destroy();
+        const trips = await Trip.findAll({ where: { user_id: userId } });
+        for (const trip of trips) {
+          await Visit.destroy({ where: { trip_id: trip.id } });
+        }
+        await Trip.destroy({ where: { user_id: userId } });
+        await user.destroy();
           res.status(200).json({ message: 'Compte utilisateur supprimé avec succès' });
     }
     };
