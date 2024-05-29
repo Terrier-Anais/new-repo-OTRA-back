@@ -93,6 +93,7 @@ export async function getVisitsForTrip(req, res) {
 
 // POST /api/me/trips
 export async function createTrip(req, res) {
+  console.log(req.body);
   const { error, value } = createTripSchema.validate(req.body);
   if (error) {
     return res.status(400).json({ error: error.details[0].message });
