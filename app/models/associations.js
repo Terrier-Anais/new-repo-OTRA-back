@@ -59,13 +59,13 @@ Place.hasOne(Visit, {
   });
 
 // Visit <--> VisitPhotos (One-to-Many)
-Visit.hasMany(visit_photos, {
+Visit.hasMany(VisitPhoto, {
   foreignKey: "visit_id",
   as: "photos",
   onDelete: 'CASCADE'
   }
 ),
-  visit_photos.belongsTo(Visit, {
+ VisitPhoto.belongsTo(Visit, {
     foreignKey: "visit_id",
     as: "visit",
     onDelete: 'CASCADE'
