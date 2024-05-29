@@ -59,7 +59,7 @@ CREATE TABLE "visit"(
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE "visit-photos"(
+CREATE TABLE "visit_photos"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "photo" TEXT NOT NULL,
   "visit_id" INT NOT NULL REFERENCES "visit"("id") ,

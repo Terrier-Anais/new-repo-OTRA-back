@@ -53,7 +53,7 @@ INSERT INTO "visit" ("dateStart","dateEnd","comment","note","place_id","trip_id"
 ('2022-01-20', '2025-01-27',  'Balade dans le vieux Lille', 4, 9, 3),
 ('2022-02-15', '2025-02-22',  'Découverte du parc du Thabor', 3, 10, 1);
 
-INSERT INTO "visit-photos" ("visit_id", "photo") VALUES
+INSERT INTO "visit_photos" ("visit_id", "photo") VALUES
 (1, '../app/data/photo11.jpg'),
 (1, '../app/data/photo12.jpg'),
 (1, '../app/data/photo13.jpg'),

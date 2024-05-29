@@ -4,6 +4,7 @@ import { Role } from "./Role.js";
 import { Trip } from "./Trip.js"; 
 import { User } from "./User.js"; 
 import { Place } from "./Place.js";
+import { VisitPhoto } from "./VisitPhoto.js";
 import { sequelize } from "./sequelizeClient.js";
 
 // Trip <--> Visit (One-to-Many)
@@ -57,7 +58,20 @@ Place.hasOne(Visit, {
   as: "place",
   });
 
-  // User <--> User (Many-to-Many) via user_has_follower
+// Visit <--> VisitPhotos (One-to-Many)
+Visit.hasMany(visit_photos, {
+  foreignKey: "visit_id",
+  as: "photos",
+  onDelete: 'CASCADE'
+  }
+),
+  visit_photos.belongsTo(Visit, {
+    foreignKey: "visit_id",
+    as: "visit",
+    onDelete: 'CASCADE'
+}) ;
+
+ // User <--> User (Many-to-Many) via user_has_follower
 User.belongsToMany(User, {
   through: 'user_has_follower',
   as: 'followers',
@@ -72,4 +86,4 @@ User.belongsToMany(User, {
 });
 
 // Exporter nos modèles
-export { Visit, Place, Role, Trip, User, sequelize};
+export { Visit, Place, Role, Trip, User, VisitPhoto, sequelize};
