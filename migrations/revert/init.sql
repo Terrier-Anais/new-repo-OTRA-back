@@ -3,6 +3,7 @@
 BEGIN;
 
 -- Suppression des tables
+DROP TABLE IF EXISTS "visit_photos";
 DROP TABLE IF EXISTS "visit";
 DROP TABLE IF EXISTS "trip";
 DROP TABLE IF EXISTS "place";

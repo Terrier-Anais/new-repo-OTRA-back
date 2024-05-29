@@ -5,6 +5,8 @@ BEGIN;
 -- Vidage de la table "user_has_follower"
 DELETE FROM "user_has_follower";
 
+DELETE FROM "visit_photos";
+
 -- Vidage de la table "visit"
 DELETE FROM "visit";
 
