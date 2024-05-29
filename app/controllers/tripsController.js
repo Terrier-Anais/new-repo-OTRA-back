@@ -98,13 +98,12 @@ export async function createTrip(req, res) {
     return res.status(400).json({ error: error.details[0].message });
   }
 
-  const { dateStart, dateEnd, photo, title, description, note, user_id } = value;
+  const { dateStart, dateEnd, title, description, note, user_id } = value;
 
   try {
     const trip = await Trip.create({
       dateStart,
       dateEnd,
-      photo,
       title,
       description,
       note,
@@ -126,7 +125,7 @@ export async function createTrip(req, res) {
  * @returns {Promise<void>} - A promise that resolves to void.
  */
 
-// PATCH /api/me/trips/:id
+// PATCH /api/me/trips
 export async function updateTrip(req, res) {
   const tripId = parseInt(req.params.id);
   const trip = await Trip.findByPk(tripId);
@@ -139,11 +138,10 @@ export async function updateTrip(req, res) {
     return res.status(400).json({ error: error.details[0].message });
   }
 
-  const { dateStart, dateEnd, photo, title, description, note } = value;
+  const { dateStart, dateEnd, title, description, note } = value;
 
   if (dateStart !== undefined) trip.dateStart = dateStart;
   if (dateEnd !== undefined) trip.dateEnd = dateEnd;
-  if (photo !== undefined) trip.photo = photo;
   if (title !== undefined) trip.title = title;
   if (description !== undefined) trip.description = description;
   if (note !== undefined) trip.note = note;
