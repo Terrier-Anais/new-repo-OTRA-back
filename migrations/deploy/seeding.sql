@@ -14,7 +14,7 @@ INSERT INTO "user" ("email", "lastname", "firstname", "pseudo", "password", "rol
 ('grace@example.com', 'Hopper', 'Grace', 'grace', 'code123', 1),
 ('henry@example.com', 'Ford', 'Henry', 'henry', 'drive123', 2),
 ('isabel@example.com', 'Queen', 'Isabel', 'isabel', 'crown123', 1),
-('jack@example.com', 'Sparrow', 'Jack', 'jack', 'pirate123', 2);
+('jack@example.com', 'Sparrow', 'Jack', 'jack', 'pirate123', 1);
 
 -- Insertion de données dans la table "place"
 INSERT INTO "place" ("city", "cityLatitude", "cityLongitude", "country", "countryLatitude", "countryLongitude", "continent") VALUES
@@ -31,26 +31,49 @@ INSERT INTO "place" ("city", "cityLatitude", "cityLongitude", "country", "countr
 
 -- Insertion de données dans la table "trip"
 INSERT INTO "trip" ("dateStart", "dateEnd", "photo", "title", "description", "note", "user_id") VALUES
-('2020-05-20', '2024-05-27', 'photo1.jpg', 'Voyage à Paris', 'Découverte de la ville lumière', 4, 1),
-('2020-06-10', '2024-06-17', 'photo2.jpg', 'Voyage à Lyon', 'Découverte de la ville des lumières', 5, 2),
-('2020-07-15', '2024-07-22', 'photo3.jpg', 'Voyage à Nice', 'Découverte de la ville de la promenade des anglais', 3, 3),
-('2023-08-20', '2024-08-27', 'photo4.jpg', 'Voyage à Marseille', 'Découverte de la ville du vieux port', 4, 4),
-('2023-09-10', '2024-09-17', 'photo5.jpg', 'Voyage à Bordeaux', 'Découverte de la ville du vin', 5, 1),
-('2022-10-15', '2024-10-22', 'photo6.jpg', 'Voyage à Nantes', 'Découverte de la ville des machines', 3, 3),
-('2022-12-05', '2024-12-12', 'photo8.jpg', 'Escapade à Toulouse', 'Exploration de la ville rose', 5, 1),
-('2021-01-20', '2025-01-27', 'photo9.jpg', 'Aventure à Lille', 'Immersion dans la capitale des Flandres', 4, 2),
-('2021-02-15', '2025-02-22', 'photo10.jpg', 'Détente à Rennes', 'Découverte de la ville bretonne', 3, 2);
+('2020-05-20', '2024-05-27', '../app/data/photo1.jpg', 'Voyage à Paris', 'Découverte de la ville lumière', 4, 1),
+('2020-06-10', '2024-06-17', '../app/data/photo2.jpg', 'Voyage à Lyon', 'Découverte de la ville des lumières', 5, 1),
+('2020-07-15', '2024-07-22',' ../app/data/photo3.jpg', 'Voyage à Nice', 'Découverte de la ville de la promenade des anglais', 3, 1),
+('2023-08-20', '2024-08-27', '../app/data/photo4.jpg', 'Voyage à Marseille', 'Découverte de la ville du vieux port', 4, 4),
+('2023-09-10', '2024-09-17', '../app/data/photo5.jpg', 'Voyage à Bordeaux', 'Découverte de la ville du vin', 5, 1),
+('2022-10-15', '2024-10-22', '../app/data/photo6.jpg', 'Voyage à Nantes', 'Découverte de la ville des machines', 3, 3),
+('2022-12-05', '2024-12-12', '../app/data/photo8.jpg', 'Escapade à Toulouse', 'Exploration de la ville rose', 5, 1),
+('2021-01-20', '2025-01-27', '../app/data/photo9.jpg', 'Aventure à Lille', 'Immersion dans la capitale des Flandres', 4, 2),
+('2021-02-15', '2025-02-22', '../app/data/photo10.jpg', 'Détente à Rennes', 'Découverte de la ville bretonne', 3, 2);
 
 -- Insertion de données dans la table "visit"
-INSERT INTO "visit" ("dateStart","dateEnd","photo","comment","note","place_id","trip_id") VALUES
-('2022-05-20', '2024-05-27', 'photo1.jpg', 'Visite de la tour Eiffel', 4, 1, 1),
-('2023-06-18','2023-06-25','photo11.jpg','Visite du musée du Louvre', 5, 1, 1),
-('2020-07-08','2020-07-15','photo12.jpg','Promenade sur les Champs-Elysées', 3, 1, 1),
-('2021-06-10', '2024-06-17', 'photo2.jpg', 'Visite du vieux Lyon', 5, 2, 2),
-('2022-07-15', '2024-07-22', 'photo3.jpg', 'Promenade sur la promenade des anglais', 3, 3, 3),
-('2022-08-20', '2024-08-27', 'photo4.jpg', 'Découverte du vieux port', 4, 4, 4),
-('2021-09-10', '2024-09-17', 'photo5.jpg', 'Visite des vignobles bordelais', 5, 5, 5),
-('2022-01-20', '2025-01-27', 'photo9.jpg', 'Balade dans le vieux Lille', 4, 9, 3),
-('2022-02-15', '2025-02-22', 'photo10.jpg', 'Découverte du parc du Thabor', 3, 10, 1);
+INSERT INTO "visit" ("dateStart","dateEnd","comment","note","place_id","trip_id") VALUES
+('2022-05-20', '2024-05-27', 'Visite de la tour Eiffel', 4, 1, 1),
+('2023-06-18','2023-06-25','Visite du musée du Louvre', 5, 1, 1),
+('2020-07-08','2020-07-15','Promenade sur les Champs-Elysées', 3, 1, 1),
+('2021-06-10', '2024-06-17', 'Visite du vieux Lyon', 5, 2, 2),
+('2022-07-15', '2024-07-22', 'Promenade sur la promenade des anglais', 3, 3, 3),
+('2022-08-20', '2024-08-27',  'Découverte du vieux port', 4, 4, 4),
+('2021-09-10', '2024-09-17', 'Visite des vignobles bordelais', 5, 5, 5),
+('2022-01-20', '2025-01-27',  'Balade dans le vieux Lille', 4, 9, 3),
+('2022-02-15', '2025-02-22',  'Découverte du parc du Thabor', 3, 10, 1);
+
+INSERT INTO "visit-photos" ("visit_id", "photo") VALUES
+(1, '../app/data/photo11.jpg'),
+(1, '../app/data/photo12.jpg'),
+(1, '../app/data/photo13.jpg'),
+(1, '../app/data/photo14.jpg'),
+(2, '../app/data/photo15.jpg'),
+(2, '../app/data/photo16.jpg'),
+(2, '../app/data/photo17.jpg'),
+(2, '../app/data/photo18.jpg'),
+(3, '../app/data/photo19.jpg'),
+(3, '../app/data/photo20.jpg'),
+(3, '../app/data/photo21.jpg'),
+(4, '../app/data/photo22.jpg'),
+(4, '../app/data/photo23.jpg'),
+(4, '../app/data/photo24.jpg'),
+(4, '../app/data/photo25.jpg'),
+(5, '../app/data/photo26.jpg'),
+(5, '../app/data/photo27.jpg'),
+(5, '../app/data/photo28.jpg'),
+(6, '../app/data/photo29.jpg'),
+(6, '../app/data/photo30.jpg');
+
 
 COMMIT;

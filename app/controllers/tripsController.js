@@ -25,6 +25,18 @@ export async function getMyTrips(req, res) {
 
   const trips = await Trip.findAll({
     where: { user_id: user.id },
+    include: [
+      {
+        model: Visit,
+        as: 'visits',
+        include: [
+          {
+            model: Place,
+            as: 'place',
+          },
+        ],
+      },
+    ],
   });
   res.status(200).json(trips);
 }

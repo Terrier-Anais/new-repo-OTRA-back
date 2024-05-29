@@ -59,6 +59,7 @@ async handleLoginFormSubmit(req, res) {
     if (!isMatch) {
       return res.status(400).json({ error: 'Email ou mot de passe incorrect' });
     }
+    console.log("mon user", user.id );
     
     const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '5h' });
     console.log("mon token", token);
