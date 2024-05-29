@@ -2,7 +2,14 @@ import { User, Trip, Visit } from '../models/index.js';
 import bcrypt from 'bcrypt';
 
 const userController = {
-  async getUser(req,res){
+  async getUser(req,res, next){
+    const thingObject = JSON.parse(req.body.thing);
+
+
+
+
+
+
     const userId = parseInt(req.params.id);
     const user = await User.findByPk(userId);
     if (!user){
@@ -22,7 +29,7 @@ const userController = {
         res.status(200).json({ message: 'Profil mis à jour avec succès' });
     },
 
-    async deleteUser(req,res){
+    async deleteUser(req,res, next){
       const userId = parseInt(req.params.id);
         const user = await User.findByPk(userId);
         if (!user) {
