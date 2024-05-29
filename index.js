@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodySanitizer);
 app.use("/api", router); 
 
-swagger(app);
+// swagger(app);
 
 // Middleware 404 (API)
 app.use((req, res) => {
