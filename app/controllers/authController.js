@@ -65,9 +65,6 @@ async handleLoginFormSubmit(req, res) {
     
     const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '5h' });
     console.log("mon token", token);
-    
-    // res.cookie('token', token, { httpOnly: true, secure: true });
-    
     res.status(201).json({ message: 'Connexion réussie', token });
   } catch (error) {
     console.error('Erreur lors de la connexion:', error);
@@ -75,22 +72,5 @@ async handleLoginFormSubmit(req, res) {
   }
 }
 };
-  /**
-   
-   */
-  // async tryCookie(req, res){
-  //   const token = req.cookies.token;
-  //   if (!token) {
-  //     return res.status(403).send('Accès interdit. Token manquant.');
-  //   }
-  //   jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-  //     if (err) {
-  //       return res.status(403).send('Accès interdit. Token invalide.');
-  //     }
-  //     res.send(`Accès accordé. Bonjour, ${decoded.name}`);
-  //   });
-
-
-
 
 export default authController;

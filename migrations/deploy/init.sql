@@ -16,7 +16,6 @@ CREATE TABLE "user"(
   "firstname" TEXT NOT NULL,
   "pseudo" TEXT NOT NULL,
   "password" TEXT NOT NULL,
-  "c"
   "role_id" INT NOT NULL REFERENCES "role"("id") ,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
   "updated_at" TIMESTAMPTZ
