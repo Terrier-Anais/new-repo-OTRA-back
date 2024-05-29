@@ -1,25 +1,17 @@
-import fs from 'fs'
+import { VisitPhoto } from '../models/index.js';
 
 const uploadController = {
     async uploadPicture(req, res){
-    if (!req.file) {
-        return res.status(400).send('No file uploaded.');
-    }
-
-    const base64Image = req.file.buffer.toString('base64');
-    const mimeType = req.file.mimetype;
-
-    const base64Data = `data:${mimeType};base64,${base64Image}`;
-    const fileName = `public/${req.file.originalname}-${Date.now()}.txt`;
-
-    fs.writeFile(fileName, base64Data, (err) => {
-        if (err) {
-            console.error('Erreur lors de la sauvegarde de l\'image:', err);
-            res.status(500).send('Erreur du serveur');
-        } else {
-            res.status(200).send('Image uploadée et sauvegardée en base64 avec succès');
-        }
-    });
-}};
+        try {
+            const { buffer } = req.file;
+            const base64Image = buffer.toString('base64');
+            const visitPhoto = await VisitPhoto.create({ photo: base64Image });
+            
+            res.status(200).json({ success: true, visitPhoto });
+          } catch (error) {
+            console.error(error);
+            res.status(500).json({ success: false, error: 'Database error' });
+          }
+    }};
 
 export default uploadController;
