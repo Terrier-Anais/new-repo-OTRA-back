@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { Trip, Visit, Place, User } from '../models/index.js';
+import { Trip, Visit, Place, VisitPhoto,User } from '../models/index.js';
 import { tripIdSchema, createTripSchema, updateTripSchema } from '../schema/trip.schema.js';
 
 /**
@@ -68,11 +68,14 @@ export async function getVisitsForTrip(req, res) {
             model: Place,
             as: 'place',
           },
+          {
+            model: VisitPhoto,
+            as: 'photos',
+          },
         ],
       },
     ],
   });
-
   if (!trip) {
     return res.status(404).json({ error: "Le voyage n'a pas été retrouvé" });
   }
