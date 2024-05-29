@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { router  } from "./app/routers/index.js";
 import { bodySanitizer } from "./app/middlewares/bodySanitizer.js";
+
 // import { jwtService } from "../projet-on-the-road-again-back/app/middlewares/jwt.service.js";
 
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodySanitizer);
 app.use("/api", router); 
 
+swagger(app);
 
 // Middleware 404 (API)
 app.use((req, res) => {

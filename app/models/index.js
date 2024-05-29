@@ -1,1 +1,1 @@
-export { Place, User, Role, Visit, Trip, sequelize } from "./associations.js";
+export { Place, User, Role, Visit, Trip, VisitPhoto, sequelize } from "./associations.js";

@@ -52,7 +52,6 @@ CREATE TABLE "visit"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "dateStart"  DATE NOT NULL,
   "dateEnd"  DATE NOT NULL,
-  "photo" TEXT,
   "comment" TEXT ,
   "note" INT,
   "place_id" INT NOT NULL REFERENCES "place"("id") ,
@@ -61,6 +60,13 @@ CREATE TABLE "visit"(
   "updated_at" TIMESTAMPTZ
 );
 
+CREATE TABLE "visit_photos"(
+  "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  "photo" TEXT NOT NULL,
+  "visit_id" INT NOT NULL REFERENCES "visit"("id") ,
+  "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+  "updated_at" TIMESTAMPTZ
+);
 
 CREATE TABLE "user_has_follower"(
   "user_id" INT NOT NULL REFERENCES "user"("id"),
