@@ -5,11 +5,6 @@ const userController = {
   async getUser(req,res, next){
     const thingObject = JSON.parse(req.body.thing);
 
-
-
-
-
-
     const userId = parseInt(req.params.id);
     const user = await User.findByPk(userId);
     if (!user){

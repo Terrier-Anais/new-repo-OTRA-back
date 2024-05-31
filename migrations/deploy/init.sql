@@ -49,9 +49,11 @@ CREATE TABLE "trip"(
 
 CREATE TABLE "visit"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  -- "title" TEXT NOT NULL,
   "dateStart"  DATE NOT NULL,
   "dateEnd"  DATE NOT NULL,
   "comment" TEXT ,
+  -- "photo" TEXT ,
   "note" INT,
   "place_id" INT NOT NULL REFERENCES "place"("id") ,
   "trip_id" INT NOT NULL REFERENCES "trip"("id") ,
