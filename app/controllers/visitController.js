@@ -1,6 +1,18 @@
-import { Trip, Visit, Place, VisitPhoto } from '../models/index.js';
+import { Visit} from '../models/index.js';
 // import { tripIdSchema, createTripSchema, updateTripSchema } from '../schema/visit.schema.js';
 
+export async function getVisit(req, res) {
+  try {
+    // const visits = await Visit.findAll({ 
+    //     where: { trip_id: req.params.tripId }
+    // });
+    const visits = await Visit.findAll();
+    res.status(200).json(visits);
+} catch (error) {
+    console.error('Error fetching visits:', error);
+    res.status(500).json({ error: 'Failed to fetch visits' });
+}
+};
 /**
  * Create a new visit.
  * 

@@ -28,7 +28,7 @@ router.get('/me/trips', cw(tripsController.getMyTrips));
  * @returns {Error} 404 - Trip not found
  * @security JWT
  */
-router.get("/me/trips/:id", cw(tripsController.getVisitsForTrip));
+// router.get("/me/trips/:id", cw(tripsController.getVisitsForTrip));
 
 /**
  * @route POST /me/trips
