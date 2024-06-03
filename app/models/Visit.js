@@ -27,7 +27,7 @@ note: {
 photo: {
     type: DataTypes.STRING,
     },
-place:{
+geo:{
       type: DataTypes.STRING,
       allowNull: true,
       },

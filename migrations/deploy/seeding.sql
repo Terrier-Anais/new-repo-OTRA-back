@@ -42,7 +42,7 @@ INSERT INTO "trip" ("dateStart", "dateEnd", "photo", "title", "description", "no
 ('2021-02-15', '2025-02-22', '../app/data/photo10.jpg', 'Détente à Rennes', 'Découverte de la ville bretonne', 3, 2);
 
 -- Insertion de données dans la table "visit"
-INSERT INTO "visit" ("title","dateStart","dateEnd","comment","photo", "note","place","place_id","trip_id") VALUES
+INSERT INTO "visit" ("title","dateStart","dateEnd","comment","photo", "note","geo","place_id","trip_id") VALUES
 ('Paris','2022-05-20', '2024-05-27', 'Visite de la tour Eiffel', '../app/data/photo1.jpg',4,'x', 1, 1),
 ('Paris','2023-06-18','2023-06-25','Visite du musée du Louvre', '../app/data/photo2.jpg', 5,'x', 1, 1),
 ('Paris','2020-07-08','2020-07-15','Promenade sur les Champs-Elysées', '../app/data/photo3.jpg', 3,'x', 1, 1),
