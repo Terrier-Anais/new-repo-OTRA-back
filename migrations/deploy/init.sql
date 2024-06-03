@@ -49,14 +49,14 @@ CREATE TABLE "trip"(
 
 CREATE TABLE "visit"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  -- "title" TEXT NOT NULL,
+  "title" TEXT NOT NULL,
   "dateStart"  DATE NOT NULL,
   "dateEnd"  DATE NOT NULL,
   "comment" TEXT ,
-  -- "photo" TEXT ,
+  "photo" TEXT ,
   "note" INT,
-  "place_id" INT NOT NULL REFERENCES "place"("id") ,
-  "trip_id" INT NOT NULL REFERENCES "trip"("id") ,
+  "place_id" INT REFERENCES "place"("id") ,
+  "trip_id" INT NOT NULL REFERENCES "trip"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
   "updated_at" TIMESTAMPTZ
 );

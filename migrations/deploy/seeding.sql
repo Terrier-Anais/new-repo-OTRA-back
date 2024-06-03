@@ -42,16 +42,16 @@ INSERT INTO "trip" ("dateStart", "dateEnd", "photo", "title", "description", "no
 ('2021-02-15', '2025-02-22', '../app/data/photo10.jpg', 'Détente à Rennes', 'Découverte de la ville bretonne', 3, 2);
 
 -- Insertion de données dans la table "visit"
-INSERT INTO "visit" ("dateStart","dateEnd","comment","note","place_id","trip_id") VALUES
-('2022-05-20', '2024-05-27', 'Visite de la tour Eiffel', 4, 1, 1),
-('2023-06-18','2023-06-25','Visite du musée du Louvre', 5, 1, 1),
-('2020-07-08','2020-07-15','Promenade sur les Champs-Elysées', 3, 1, 1),
-('2021-06-10', '2024-06-17', 'Visite du vieux Lyon', 5, 2, 2),
-('2022-07-15', '2024-07-22', 'Promenade sur la promenade des anglais', 3, 3, 3),
-('2022-08-20', '2024-08-27',  'Découverte du vieux port', 4, 4, 4),
-('2021-09-10', '2024-09-17', 'Visite des vignobles bordelais', 5, 5, 5),
-('2022-01-20', '2025-01-27',  'Balade dans le vieux Lille', 4, 9, 3),
-('2022-02-15', '2025-02-22',  'Découverte du parc du Thabor', 3, 10, 1);
+INSERT INTO "visit" ("title","dateStart","dateEnd","comment","photo", "note","place_id","trip_id") VALUES
+('Paris','2022-05-20', '2024-05-27', 'Visite de la tour Eiffel', '../app/data/photo1.jpg', 4, 1, 1),
+('Paris','2023-06-18','2023-06-25','Visite du musée du Louvre', '../app/data/photo2.jpg', 5, 1, 1),
+('Paris','2020-07-08','2020-07-15','Promenade sur les Champs-Elysées', '../app/data/photo3.jpg', 3, 1, 1),
+('Lyon','2021-06-10', '2024-06-17', 'Visite du vieux Lyon', '../app/data/photo4.jpg', 5, 2, 2),
+('Nice','2022-07-15', '2024-07-22', 'Promenade sur la promenade des anglais', '../app/data/photo5.jpg', 3, 3, 3),
+('Marseille','2022-08-20', '2024-08-27', 'Découverte du vieux port', '../app/data/photo6.jpg', 4, 4, 4),
+('Bordeaux','2021-09-10', '2024-09-17', 'Visite des vignobles bordelais', '../app/data/photo7.jpg', 5, 5, 5),
+('Lille','2022-01-20', '2025-01-27', 'Balade dans le vieux Lille', '../app/data/photo8.jpg', 4, 9, 3),
+('Rennes','2022-02-15', '2025-02-22', 'Découverte du parc du Thabor', '../app/data/photo9.jpg', 3, 10, 1);
 
 INSERT INTO "visit_photos" ("visit_id", "photo") VALUES
 (1, '../app/data/photo11.jpg'),
