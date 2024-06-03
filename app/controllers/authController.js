@@ -70,6 +70,9 @@ async handleLoginFormSubmit(req, res) {
     console.error('Erreur lors de la connexion:', error);
     res.status(500).json({ error: 'Erreur interne du serveur' });
   }
+},
+async logOut(req,res){
+  
 }
 };
 

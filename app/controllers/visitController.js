@@ -34,12 +34,13 @@ export async function createVisit(req, res) {
 
   try {
     const visit = await Visit.create({
+      title,
       dateStart,
       dateEnd,
-    //   photo,
-    //   title,
       comment,
       note,
+      photo,
+      geo,
       place_id,
       trip_id,
     });
@@ -62,7 +63,7 @@ export async function createVisit(req, res) {
 // PATCH /api/me/trips/:id/visit/:id
 export async function updateVisit(req, res) {
   const { id } = req.params;
-  const { dateStart, dateEnd, comment, note, place_id, trip_id } = req.body;
+  const { title,dateStart, dateEnd, comment, note, photo, geo, place_id, trip_id } = req.body;
 
   try {
     const visit = await Visit.findByPk(id);
@@ -71,10 +72,13 @@ export async function updateVisit(req, res) {
     }
 
     // Mettre à jour les champs de la visite
+    visit.title = title !== undefined ? title : visit.title; 
     visit.dateStart = dateStart !== undefined ? dateStart : visit.dateStart;
     visit.dateEnd = dateEnd !== undefined ? dateEnd : visit.dateEnd;
     visit.comment = comment !== undefined ? comment : visit.comment;
     visit.note = note !== undefined ? note : visit.note;
+    visit.photo = photo !== undefined ? photo : visit.photo;
+    visit.geo = geo !== undefined ? geo : visit.geo;
     visit.place_id = place_id !== undefined ? place_id : visit.place_id;
     visit.trip_id = trip_id !== undefined ? trip_id : visit.trip_id;
 
