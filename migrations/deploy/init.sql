@@ -55,6 +55,7 @@ CREATE TABLE "visit"(
   "comment" TEXT ,
   "photo" TEXT ,
   "note" INT,
+  "place" TEXT,
   "place_id" INT REFERENCES "place"("id") ,
   "trip_id" INT NOT NULL REFERENCES "trip"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
