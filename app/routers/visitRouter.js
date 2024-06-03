@@ -7,6 +7,7 @@ export const router = Router();
 
 router.use(jwtService);
 
+// router.get("/me/trips/:id/visits", cw(visitController.getVisit));
 router.post("/me/trips/:id/visit", cw(visitController.createVisit));
 router.patch("/me/trips/:id/visit/:id", cw(visitController.updateVisit));
 router.delete("/me/trips/:id/visit/:id", cw(visitController.deleteVisit));

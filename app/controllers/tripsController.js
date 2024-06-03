@@ -51,10 +51,10 @@ export async function getMyTrips(req, res) {
  * @returns {Promise<void>} - A promise that resolves to void.
  */
 export async function getVisitsForTrip(req, res) {
-  const { error } = tripIdSchema.validate({ id: req.params.id });
-  if (error) {
-    return res.status(400).send(error.details[0].message);
-  }
+  // const { error } = tripIdSchema.validate({ id: req.params.id });
+  // if (error) {
+  //   return res.status(400).send(error.details[0].message);
+  // }
 
   const tripId = parseInt(req.params.id);
 
@@ -62,17 +62,7 @@ export async function getVisitsForTrip(req, res) {
     include: [
       {
         model: Visit,
-        as: 'visits',
-        include: [
-          {
-            model: Place,
-            as: 'place',
-          },
-          {
-            model: VisitPhoto,
-            as: 'photos',
-          },
-        ],
+        as: 'visits'
       },
     ],
   });
