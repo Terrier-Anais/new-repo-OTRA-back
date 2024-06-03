@@ -4,6 +4,10 @@ import {sequelize} from "./sequelizeClient.js";
 export class Visit extends Model {}
 
 Visit.init({
+title:{
+  type: DataTypes.STRING,
+  allowNull: false,
+  },
 dateStart: {
   type: DataTypes.DATE,
   allowNull: false 
@@ -20,13 +24,16 @@ note: {
   type: DataTypes.INTEGER,
   defaultValue: 3,
   },
+photo: {
+    type: DataTypes.STRING,
+    },
 place_id: {
-  type: DataTypes.INTEGER,
-  allowNull: false,
-  references: {
-    model: 'place',
-    key: 'id',
-  }
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: 'place',
+      key: 'id',
+      },
 },
 trip_id: {
   type: DataTypes.INTEGER,
