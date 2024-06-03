@@ -27,6 +27,10 @@ note: {
 photo: {
     type: DataTypes.STRING,
     },
+place:{
+      type: DataTypes.STRING,
+      allowNull: true,
+      },
 place_id: {
     type: DataTypes.INTEGER,
     allowNull: true,
