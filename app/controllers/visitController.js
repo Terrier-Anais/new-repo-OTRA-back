@@ -30,7 +30,7 @@ export async function createVisit(req, res) {
 //     return res.status(400).json({ error: error.details[0].message });
 //   }
 
-  const { dateStart, dateEnd, comment, note, place_id, trip_id } = req.body;
+const { title, dateStart, dateEnd, comment, note, photo,geo, place_id, trip_id } = req.body;
 
   try {
     const visit = await Visit.create({
