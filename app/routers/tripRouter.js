@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as tripsController from "../controllers/tripsController.js";
+import tripController from "../controllers/tripController.js";
 import { controllerWrapper as cw } from "./controllerWrapper.js";
 import { jwtService } from "../middlewares/jwt.service.js";
 
@@ -18,18 +18,7 @@ router.use(jwtService);
  * @returns {Array.<Trip>} 200 - An array of user trips
  * @security JWT
  */
-router.get('/me/trips', cw(tripsController.getMyTrips));
-
-/**
- * @route GET /me/trips/:id
- * @group Trips - Operations about user trips
- * @param {string} id.path.required - The ID of the trip
- * @returns {Array.<Visit>} 200 - An array of visits for the trip
- * @returns {Error} 404 - Trip not found
- * @security JWT
- */
-router.get("/me/trips/:id", cw(tripsController.getVisitsForTrip));
-
+router.get('/me/trips', cw(tripController.getTrips));
 /**
  * @route POST /me/trips
  * @group Trips - Operations about user trips
@@ -38,8 +27,7 @@ router.get("/me/trips/:id", cw(tripsController.getVisitsForTrip));
  * @returns {Error} 400 - Bad request
  * @security JWT
  */
-router.post("/me/trips", cw(tripsController.createTrip));
-
+router.post("/me/trips", cw(tripController.createTrip));
 /**
  * @route PATCH /me/trips/:id
  * @group Trips - Operations about user trips
@@ -50,8 +38,7 @@ router.post("/me/trips", cw(tripsController.createTrip));
  * @returns {Error} 404 - Trip not found
  * @security JWT
  */
-router.patch("/me/trips/:id", cw(tripsController.updateTrip));
-
+router.patch("/me/trips/:id", cw(tripController.updateTrip));
 /**
  * @route DELETE /me/trips/:id
  * @group Trips - Operations about user trips
@@ -60,6 +47,17 @@ router.patch("/me/trips/:id", cw(tripsController.updateTrip));
  * @returns {Error} 404 - Trip not found
  * @security JWT
  */
-router.delete("/me/trips/:id", cw(tripsController.deleteTrip));
+router.delete("/me/trips/:id", cw(tripController.deleteTrip));
 
-
+/**
+ * @route GET /me/trips/:id
+ * @group Trips - Operations about user trips
+ * @param {string} id.path.required - The ID of the trip
+ * @returns {Array.<Visit>} 200 - An array of visits for the trip
+ * @returns {Error} 404 - Trip not found
+ * @security JWT
+ */
+router.get("/me/trips/:id", cw(tripController.getVisitsForTrip));
+router.post("/me/trips/:id/visit", cw(tripController.createVisit));
+router.patch("/me/trips/:id/visit/:id", cw(tripController.updateVisit));
+router.delete("/me/trips/:id/visit/:id", cw(tripController.deleteVisit));

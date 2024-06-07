@@ -2,7 +2,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const uploadController = {
+const pictureController = {
     async uploadPicture(req, res) {
       const { title, photo } = req.body;
       const base64Image = photo.split(';base64,').pop();
@@ -36,4 +36,4 @@ const uploadController = {
     }
 };
 
-export default uploadController;
+export default pictureController;

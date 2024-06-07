@@ -1,17 +1,16 @@
 import { Router } from "express";
-
 import { router as userRouter } from "./userRouter.js";
-import { router as tripRouter } from "./tripsRouter.js";
-import { router as uploadRouter } from "./uploadRouter.js";
-import { router as visitRouter } from "./visitRouter.js";
+import { router as tripRouter } from "./tripRouter.js";
+import { router as pictureRouter } from "./pictureRouter.js";
+
 
 
 export const router = Router();
 
 router.use(userRouter);
-router.use(uploadRouter);
+router.use(pictureRouter);
 router.use(tripRouter);
-router.use(visitRouter);
+
 
 
 // Middleware 404 (API)
