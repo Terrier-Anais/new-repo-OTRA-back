@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
-import { router  } from "./app/routers/index.js";
+import "dotenv/config";
+import { router } from "./app/routers/index.js";
 import { bodySanitizer } from "./app/middlewares/bodySanitizer.js";
-
-// import { jwtService } from "../projet-on-the-road-again-back/app/middlewares/jwt.service.js";
+// sécurité import SQL
 
 export const app = express();
 
@@ -17,9 +17,12 @@ app.use("/api", router);
 // swagger(app);
 
 // Middleware 404 (API)
-app.use((req, res) => {
-  // TODO: rediriger vers la documentation de l'API !
-  res.send("Not Found"); // FIXME
+// app.use((req, res) => {
+//   // TODO: rediriger vers la documentation de l'API !
+//   res.send("Not Found"); // FIXME
+// });
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`🚀 Server listening at http://localhost:${port}`);
 });
-
-

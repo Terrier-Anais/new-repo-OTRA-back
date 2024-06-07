@@ -16,12 +16,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
-    "chai": "^5.1.1",
-    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "debug": "^4.3.4",
     "dotenv": "^16.4.5",
     "email-validator": "^2.0.4",
     "eslint-config-airbnb": "^19.0.4",
@@ -29,18 +25,13 @@
     "express-jsdoc-swagger": "^1.8.0",
     "express-session": "^1.18.0",
     "joi": "^17.13.1",
-    "joy": "^0.1.1",
     "jsdoc": "^4.0.3",
     "jsonwebtoken": "^9.0.2",
-    "mocha": "^10.4.0",
     "nodemon": "^3.1.0",
     "pg": "^8.11.5",
     "sanitize-html": "^2.13.0",
     "sequelize": "^6.37.3",
-    "sqlite3": "^5.1.7",
-    "swagger": "^0.0.1",
-    "winston": "^3.13.0",
-    "winston-daily-rotate-file": "^5.0.0"
+    "swagger": "^0.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.2.0",

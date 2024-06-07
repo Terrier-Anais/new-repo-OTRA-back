@@ -17,5 +17,3 @@ export const sequelize = new Sequelize(process.env.PG_URL, { // pour importer, o
 await sequelize.authenticate();
 
 
-// Exporter le client
-// module.exports = sequelize; ==> plus besoin !

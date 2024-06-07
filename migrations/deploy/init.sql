@@ -53,7 +53,7 @@ CREATE TABLE "visit"(
   "dateStart"  DATE NOT NULL,
   "dateEnd"  DATE NOT NULL,
   "comment" TEXT ,
-  "photo" TEXT ,
+  -- "photo" TEXT ,
   "note" INT,
   "geo" TEXT,
   "place_id" INT REFERENCES "place"("id") ,

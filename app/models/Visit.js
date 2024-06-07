@@ -24,9 +24,9 @@ note: {
   type: DataTypes.INTEGER,
   defaultValue: 3,
   },
-photo: {
-    type: DataTypes.STRING,
-    },
+// photo: {
+//     type: DataTypes.STRING,
+//     },
 geo:{
       type: DataTypes.STRING,
       allowNull: true,
