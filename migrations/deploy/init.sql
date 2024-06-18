@@ -21,18 +21,18 @@ CREATE TABLE "user"(
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE "place"(
-  "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "city" TEXT NOT NULL,
-  "cityLatitude" NUMERIC(9,6) NOT NULL,
-  "cityLongitude" NUMERIC(9,6) NOT NULL,
-  "country" TEXT NOT NULL,
-  "countryLatitude" NUMERIC(9,6) NOT NULL,
-  "countryLongitude" NUMERIC(9,6) NOT NULL,
-  "continent" TEXT NOT NULL,
-  "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
-  "updated_at" TIMESTAMPTZ
-);
+-- CREATE TABLE "place"(
+--   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+--   "city" TEXT NOT NULL,
+--   "cityLatitude" NUMERIC(9,6) NOT NULL,
+--   "cityLongitude" NUMERIC(9,6) NOT NULL,
+--   "country" TEXT NOT NULL,
+--   "countryLatitude" NUMERIC(9,6) NOT NULL,
+--   "countryLongitude" NUMERIC(9,6) NOT NULL,
+--   "continent" TEXT NOT NULL,
+--   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+--   "updated_at" TIMESTAMPTZ
+-- );
 
 CREATE TABLE "trip"(
    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -56,7 +56,7 @@ CREATE TABLE "visit"(
   -- "photo" TEXT ,
   "note" INT,
   "geo" TEXT,
-  "place_id" INT REFERENCES "place"("id") ,
+  "visit_photo_id" INT REFERENCES "visit_photo"("id") ,
   "trip_id" INT NOT NULL REFERENCES "trip"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
   "updated_at" TIMESTAMPTZ
@@ -70,11 +70,11 @@ CREATE TABLE "visit_photos"(
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE "user_has_follower"(
-  "user_id" INT NOT NULL REFERENCES "user"("id"),
-  "follower_id" INT NOT NULL REFERENCES "user"("id"),
-  PRIMARY KEY ("user_id", "follower_id")
-);
+-- CREATE TABLE "user_has_follower"(
+--   "user_id" INT NOT NULL REFERENCES "user"("id"),
+--   "follower_id" INT NOT NULL REFERENCES "user"("id"),
+--   PRIMARY KEY ("user_id", "follower_id")
+-- );
 
 COMMIT;
 

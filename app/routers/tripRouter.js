@@ -57,7 +57,7 @@ router.delete("/me/trips/:id", cw(tripController.deleteTrip));
  * @returns {Error} 404 - Trip not found
  * @security JWT
  */
-router.get("/me/trips/:id", cw(tripController.getVisitsForTrip));
+router.get("/me/trips/:id", cw(tripController.getVisits));
 router.post("/me/trips/:id/visit", cw(tripController.createVisit));
 router.patch("/me/trips/:id/visit/:id", cw(tripController.updateVisit));
 router.delete("/me/trips/:id/visit/:id", cw(tripController.deleteVisit));
