@@ -53,22 +53,22 @@ CREATE TABLE "visit"(
   "dateStart"  DATE NOT NULL,
   "dateEnd"  DATE NOT NULL,
   "comment" TEXT ,
-  -- "photo" TEXT ,
+  "photo" TEXT ,
   "note" INT,
   "geo" TEXT,
-  "visit_photo_id" INT REFERENCES "visit_photo"("id") ,
+  -- "visit_photo_id" INT REFERENCES "visit_photo"("id") ,
   "trip_id" INT NOT NULL REFERENCES "trip"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE "visit_photos"(
-  "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "photo" TEXT NOT NULL,
-  "visit_id" INT NOT NULL REFERENCES "visit"("id") ,
-  "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
-  "updated_at" TIMESTAMPTZ
-);
+-- CREATE TABLE "visit_photos"(
+--   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+--   "photo" TEXT NOT NULL,
+--   "visit_id" INT NOT NULL REFERENCES "visit"("id") ,
+--   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+--   "updated_at" TIMESTAMPTZ
+-- );
 
 -- CREATE TABLE "user_has_follower"(
 --   "user_id" INT NOT NULL REFERENCES "user"("id"),

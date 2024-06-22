@@ -3,8 +3,8 @@ import { Visit } from "./Visit.js";
 import { Role } from "./Role.js";
 import { Trip } from "./Trip.js"; 
 import { User } from "./User.js"; 
-import { Place } from "./Place.js";
-import { VisitPhoto } from "./VisitPhoto.js";
+// import { Place } from "./Place.js";
+// import { VisitPhoto } from "./VisitPhoto.js";
 import { sequelize } from "./sequelizeClient.js";
 
 // Trip <--> Visit (One-to-Many)
@@ -48,28 +48,28 @@ User.belongsTo(Role, {
 });
 
 // Visit <--> Place (One-to-One)
-Place.hasOne(Visit, {
-  foreignKey: "place_id",
-  as: "visit"
-  }
-),
-  Visit.belongsTo(Place, {
-  foreignKey: "place_id",
-  as: "place",
-  });
+// Place.hasOne(Visit, {
+//   foreignKey: "place_id",
+//   as: "visit"
+//   }
+// ),
+//   Visit.belongsTo(Place, {
+//   foreignKey: "place_id",
+//   as: "place",
+//   });
 
 // Visit <--> VisitPhotos (One-to-Many)
-Visit.hasMany(VisitPhoto, {
-  foreignKey: "visit_id",
-  as: "photos",
-  onDelete: 'CASCADE'
-  }
-),
- VisitPhoto.belongsTo(Visit, {
-    foreignKey: "visit_id",
-    as: "visit",
-    onDelete: 'CASCADE'
-}) ;
+// Visit.hasMany(VisitPhoto, {
+//   foreignKey: "visit_id",
+//   as: "photos",
+//   onDelete: 'CASCADE'
+//   }
+// ),
+//  VisitPhoto.belongsTo(Visit, {
+//     foreignKey: "visit_id",
+//     as: "visit",
+//     onDelete: 'CASCADE'
+// }) ;
 
  // User <--> User (Many-to-Many) via user_has_follower
 User.belongsToMany(User, {
@@ -86,4 +86,4 @@ User.belongsToMany(User, {
 });
 
 // Exporter nos modèles
-export { Visit, Place, Role, Trip, User, VisitPhoto, sequelize};
+export { Visit, Role, Trip, User, sequelize};

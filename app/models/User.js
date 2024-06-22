@@ -31,7 +31,7 @@ password: {
 role_id: {
   type: DataTypes.INTEGER,
   allowNull: false,
-  // defaultValue: "member",
+  defaultValue: "member",
   references: {
     model: 'role',
     key: 'id',

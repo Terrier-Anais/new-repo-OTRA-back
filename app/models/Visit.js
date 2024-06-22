@@ -24,21 +24,21 @@ note: {
   type: DataTypes.INTEGER,
   defaultValue: 3,
   },
-// photo: {
-//     type: DataTypes.STRING,
-//     },
+photo: {
+    type: DataTypes.STRING,
+    },
 geo:{
       type: DataTypes.STRING,
       allowNull: true,
       },
-place_id: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    references: {
-      model: 'place',
-      key: 'id',
-      },
-},
+// visit_photo_id: {
+//     type: DataTypes.INTEGER,
+//     allowNull: true,
+//     references: {
+//       model: 'visitPhoto',
+//       key: 'id',
+//       },
+// },
 trip_id: {
   type: DataTypes.INTEGER,
   allowNull: false,

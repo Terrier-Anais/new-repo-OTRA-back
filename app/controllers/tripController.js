@@ -1,4 +1,4 @@
-import { Trip, Visit, Place, VisitPhoto,User } from '../models/index.js';
+import { Trip, Visit,User } from '../models/index.js';
 import { tripIdSchema, createTripSchema, updateTripSchema } from '../schema/trip.schema.js';
 
 const tripController = {
@@ -29,12 +29,12 @@ async getTrips(req, res){
       {
         model: Visit,
         as: 'visits',
-        include: [
-          {
-            model: Place,
-            as: 'place',
-          },
-        ],
+        // include: [
+        //   {
+        //     model: Place,
+        //     as: 'place',
+        //   },
+        // ],
       },
     ],
   });
@@ -176,17 +176,17 @@ async createVisit(req, res) {
 //     return res.status(400).json({ error: error.details[0].message });
 //   }
 
-const { title, dateStart, dateEnd, comment, note,geo, place_id, trip_id } = req.body;
+const { title, dateStart, dateEnd, comment,photo, note,geo, trip_id } = req.body;
  try {
    const visit = await Visit.create({
      title,
      dateStart,
      dateEnd,
      comment,
+     photo,
      note,
-    //  photo,
      geo,
-     place_id,
+    //  place_id,
      trip_id,
    });
    res.status(201).json(visit);
@@ -206,7 +206,7 @@ const { title, dateStart, dateEnd, comment, note,geo, place_id, trip_id } = req.
 // PATCH /api/me/trips/:id/visit/:id
 async updateVisit(req, res) {
  const { id } = req.params;
- const { title,dateStart, dateEnd, comment, note, geo, place_id, trip_id } = req.body;
+ const { title,dateStart, dateEnd, comment,photo, note, geo, trip_id } = req.body;
 
  try {
    const visit = await Visit.findByPk(id);
