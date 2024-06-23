@@ -35,7 +35,7 @@ user_id: {
   },
 }
 }, {
-  sequelize, // instance de connexion
+  sequelize,
   tableName: "trip"
 });
 

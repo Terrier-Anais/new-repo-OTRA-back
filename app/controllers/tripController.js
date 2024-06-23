@@ -22,7 +22,7 @@ async getTrips(req, res){
   if (!user) {
     return res.status(404).send('Utilisateur non trouvé.');
   }
-
+// Find all trips associated with the user, including visits
   const trips = await Trip.findAll({
     where: { user_id: user.id },
     include: [
@@ -59,6 +59,7 @@ async createTrip(req, res) {
   const { dateStart, dateEnd, photo, title, description, note, user_id } = value;
 
   try {
+    // Create a new trip
     const trip = await Trip.create({
       dateStart,
       dateEnd,
