@@ -222,7 +222,7 @@ async updateVisit(req, res) {
    visit.note = note !== undefined ? note : visit.note;
    visit.photo = photo !== undefined ? photo : visit.photo;
    visit.geo = geo !== undefined ? geo : visit.geo;
-   visit.place_id = place_id !== undefined ? place_id : visit.place_id;
+  //  visit.place_id = place_id !== undefined ? place_id : visit.place_id;
    visit.trip_id = trip_id !== undefined ? trip_id : visit.trip_id;
 
    // Enregistrer les modifications

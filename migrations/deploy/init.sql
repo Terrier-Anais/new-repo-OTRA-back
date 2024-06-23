@@ -14,7 +14,7 @@ CREATE TABLE "user"(
   "email" TEXT NOT NULL UNIQUE,
   "lastname" TEXT NOT NULL,
   "firstname" TEXT NOT NULL,
-  "pseudo" TEXT NOT NULL,
+  "pseudo" TEXT NOT NULL UNIQUE,
   "password" TEXT NOT NULL,
   "role_id" INT NOT NULL REFERENCES "role"("id") ,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -56,7 +56,6 @@ CREATE TABLE "visit"(
   "photo" TEXT ,
   "note" INT,
   "geo" TEXT,
-  -- "visit_photo_id" INT REFERENCES "visit_photo"("id") ,
   "trip_id" INT NOT NULL REFERENCES "trip"("id"),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
   "updated_at" TIMESTAMPTZ
