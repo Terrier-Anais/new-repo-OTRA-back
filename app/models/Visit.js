@@ -31,14 +31,6 @@ geo:{
       type: DataTypes.STRING,
       allowNull: true,
       },
-// visit_photo_id: {
-//     type: DataTypes.INTEGER,
-//     allowNull: true,
-//     references: {
-//       model: 'visitPhoto',
-//       key: 'id',
-//       },
-// },
 trip_id: {
   type: DataTypes.INTEGER,
   allowNull: false,
@@ -49,7 +41,7 @@ trip_id: {
 },
 
 }, {
-  sequelize, // instance de connexion
+  sequelize,
   tableName: "visit"
 });
 

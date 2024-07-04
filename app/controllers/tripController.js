@@ -128,8 +128,15 @@ async deleteTrip(req, res) {
   if (!trip) {
     return res.status(404).json({ error: "Trip not found." });
   }
-  await trip.destroy();
-  res.status(204).send();
+  try {
+    await Visit.destroy({ where: { trip_id: tripId } });
+    await trip.destroy();
+
+    res.status(204).send();
+  } catch (err) {
+    console.error('Error deleting trip:', err);
+    res.status(500).json({ error: 'An error occurred while deleting the trip.' });
+  }
 },
 /**
  * Retrieve all visits associated with a specific trip for the authenticated user.
