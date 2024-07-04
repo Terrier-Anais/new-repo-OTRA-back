@@ -20,12 +20,12 @@ Liste des fonctionnalités principales de votre projet :
 
 ## Installation
 
-Cloner le dépot
-Npm i
-createdb "nom de la base de donnée"
-changer le nom dans la configuration 
-sqitch deploy
-git add .
-git commit -m ""
-git push
+- Cloner le dépot
+- Npm i
+- createdb "nom de la base de donnée"
+- changer le nom dans la configuration 
+- sqitch deploy
+- git add .
+- git commit -m ""
+- git push
 
